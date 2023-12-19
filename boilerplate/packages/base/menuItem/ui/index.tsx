@@ -2,6 +2,7 @@ import React from 'react';
 // import './style.scss';
 
 interface MenuItem {
+    id: string, 
     title: string,
     desc: string,
     price: number,
@@ -9,16 +10,21 @@ interface MenuItem {
     ingredients?: [],
 } 
 
-export const MenuItem = () => {
+interface MenuItemProps {
+    data: MenuItem
+}
+
+export const MenuItem = ({data}:MenuItemProps) => {
+    
     return (
         <article>
             <section>
-                <h3>title</h3>
-                <hr className='dotted'/>
-                <h3>price</h3>
+                <h3>{data.title}</h3>
+                {/* <hr className='dotted'/> */}
+                <h3>{data.price}</h3>
             </section>
             <section>
-                <p>desc</p>
+                <p>{data.desc}</p>
             </section>
         </article>
     )
