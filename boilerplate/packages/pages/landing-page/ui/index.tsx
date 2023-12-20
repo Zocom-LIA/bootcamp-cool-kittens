@@ -1,9 +1,8 @@
-import './style.scss';
-
-/* Import dependencies */
 import { useEffect, useState } from 'react';
 import { MenuItem } from '@zocom/menu-item'
+import { DipOption } from '@zocom/dip-option'
 import { menuData } from '..';
+import './style.scss';
 
 type MenuItem = {
     id: string, 
@@ -50,9 +49,14 @@ export const LandingPage = () => {
             }
           </section>
           <section>
+            <section>
+                <h3>Dipsås</h3>
+                {/* <hr/> */}
+                <h3>19 sek</h3>
+            </section>
             {
                 dipMenu && dipMenu.map((dip)=> (
-                    <MenuItem key={dip.id} title={dip.title} price={dip.price} desc={dip.desc}/>
+                    <DipOption key={dip.id} id={dip.id} title={dip.title} price={dip.price}/>
                 ))  
             }
           </section>
