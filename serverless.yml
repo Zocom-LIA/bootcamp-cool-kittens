@@ -22,6 +22,39 @@ functions:
         - httpApi:
             path: "/api/menu"
             method: GET
+    filterByCategory:
+      handler: functions/filterByCategory/index.handler
+      events:
+        - httpApi:
+            path: "/api/menu/{category}"
+            method: GET
+
+resources:
+  Resources:
+    yygsMenu:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: yygs-menu
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: title
+            AttributeType: S
+          - AttributeName: category
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id 
+            KeyType: HASH
+          - AttributeName: title
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
+        GlobalSecondaryIndexes:
+          - IndexName: 'filterByCategory'
+            KeySchema:
+              - AttributeName: category
+                KeyType: HASH
+            Projection: 
+              ProjectionType: ALL
 
 #   getMenu:
 #     handler: functions/getMenu/index.handler
@@ -72,23 +105,7 @@ functions:
 #           path: "/api/updateOrderStatus"
 #           method: POST
 
-resources:
-  Resources:
-    yygsMenu:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: yygs-menu
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-          - AttributeName: title
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id 
-            KeyType: HASH
-          - AttributeName: title
-            KeyType: RANGE
-        BillingMode: PAY_PER_REQUEST
+
 
 
           
