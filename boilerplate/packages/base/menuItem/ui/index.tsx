@@ -1,30 +1,19 @@
-import React from 'react';
-// import './style.scss';
-
-interface MenuItem {
-    id: string, 
+type MenuItemProps = {
     title: string,
-    desc: string,
     price: number,
-    category: string
-    ingredients?: [],
-} 
-
-interface MenuItemProps {
-    data: MenuItem
+    desc: string
 }
 
-export const MenuItem = ({data}:MenuItemProps) => {
-    
+export const MenuItem = ({title, price, desc} : MenuItemProps) => {  
     return (
         <article>
             <section>
-                <h3>{data.title}</h3>
+                <h3>{title}</h3>
                 {/* <hr className='dotted'/> */}
-                <h3>{data.price}</h3>
+                <h3>{price}</h3>
             </section>
             <section>
-                <p>{data.desc}</p>
+                <p>{desc}</p>
             </section>
         </article>
     )

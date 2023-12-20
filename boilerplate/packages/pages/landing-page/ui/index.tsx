@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { MenuItem } from '@zocom/menu-item'
 import { menuData } from '..';
 
-interface MenuItem {
+type MenuItem = {
     id: string, 
     title: string,
     desc: string,
@@ -37,7 +37,8 @@ export const LandingPage = () => {
             <h2>Meny</h2>
             <section>
                 {sortedMenu && sortedMenu.map((menuItem) => (
-                    <MenuItem key={menuItem.id} data={menuItem}/>
+                    // <MenuItem key={menuItem.id} data={menuItem}/>
+                    <MenuItem key={menuItem.id} title={menuItem.title} price={menuItem.price} desc={menuItem.desc}/>
                 ))}
             </section>
         </main>
