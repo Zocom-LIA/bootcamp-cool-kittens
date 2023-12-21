@@ -58,7 +58,6 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
         <section>
           <p>{wonton.desc}</p>
         </section>
-        {cart && <p> Added to cart </p>}
       </article>
     )
 }

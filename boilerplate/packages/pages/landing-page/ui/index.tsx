@@ -58,36 +58,41 @@ export const LandingPage = () => {
     // const sortedMenu = menu.sort((a, b) => a.id - b.id);
 
     return (
-        <main>
-            <div onClick={() => setCartModalOpen(true)}>
-                {CartIcon }
-            </div>
+        <>
             {
-                cartQty > 0 && (
-                    <span className='cart__qty'>{cartQty}</span>
-                )
+                cartModalOpen ? (<CartModal isOpen={cartModalOpen} closeModal = {()=> setCartModalOpen(false)}/>):(<main>
+                    <div onClick={() => setCartModalOpen(true)}>
+                        {CartIcon }
+                    </div>
+                    {
+                        cartQty > 0 && (
+                            <span className='cart__qty'>{cartQty}</span>
+                        )
+                    }
+                    
+                    <h2>Meny</h2>
+                    <section>
+                        {
+                            wontonMenu && wontonMenu.map((wonton)=> (
+                                <MenuItem key={wonton.id} wonton={wonton}/>
+                            )) 
+                        }
+                    </section>
+                    <section>
+                        <section>
+                            <h3>Dipsås</h3>
+                            {/* <hr/> */}
+                            <h3>19 sek</h3>
+                        </section>
+                        {
+                            dipMenu && dipMenu.map((dip)=> (
+                                <DipOption key={dip.id} dip={dip}/>
+                            ))  
+                        }
+                    </section>
+                </main>)
             }
-            <CartModal isOpen={cartModalOpen} closeModal = {()=> setCartModalOpen(false)}/>
-            <h2>Meny</h2>
-            <section>
-                {
-                    wontonMenu && wontonMenu.map((wonton)=> (
-                        <MenuItem key={wonton.id} wonton={wonton}/>
-                    )) 
-                }
-            </section>
-            <section>
-                <section>
-                    <h3>Dipsås</h3>
-                    {/* <hr/> */}
-                    <h3>19 sek</h3>
-                </section>
-                {
-                    dipMenu && dipMenu.map((dip)=> (
-                        <DipOption key={dip.id} dip={dip}/>
-                    ))  
-                }
-            </section>
-        </main>
+            
+        </>
     );
 }
