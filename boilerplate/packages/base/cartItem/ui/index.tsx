@@ -1,5 +1,3 @@
-import React from "react"
-
 type MenuItemProps = {
     title: string,
     price: number,
@@ -13,6 +11,7 @@ export const CartItem = ({title, price} : MenuItemProps) => {
                 {/* <hr className='dotted'/> */}
                 <h3>{price} sek</h3>
             </section>
+            <section></section>
         </article>
     )
 }
