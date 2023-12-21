@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { CartModal } from '@zocom/cart-modal'
 import { MenuItem } from '@zocom/menu-item'
 import { DipOption } from '@zocom/dip-option'
 import { menuData } from '..';
@@ -38,28 +39,31 @@ export const LandingPage = () => {
 
     // const sortedMenu = menu.sort((a, b) => a.id - b.id);
 
+    const [cartModalOpen, setCartModalOpen] = useState(false);
     return (
         <main>
-          <h2>Meny</h2>
-          <section>
-            {
-                wontonMenu && wontonMenu.map((wonton)=> (
-                    <MenuItem key={wonton.id} title={wonton.title} price={wonton.price} desc={wonton.desc}/>
-                )) 
-            }
-          </section>
-          <section>
+            <button onClick={() => setCartModalOpen(true)}>CART</button> {/*Detta ska vara en ikon sen inte en button :)*/}
+            <CartModal isOpen={cartModalOpen} closeModal = {()=> setCartModalOpen(false)}/>
+            <h2>Meny</h2>
             <section>
-                <h3>Dipsås</h3>
-                {/* <hr/> */}
-                <h3>19 sek</h3>
+                {
+                    wontonMenu && wontonMenu.map((wonton)=> (
+                        <MenuItem key={wonton.id} title={wonton.title} price={wonton.price} desc={wonton.desc}/>
+                    )) 
+                }
             </section>
-            {
-                dipMenu && dipMenu.map((dip)=> (
-                    <DipOption key={dip.id} id={dip.id} title={dip.title} price={dip.price}/>
-                ))  
-            }
-          </section>
+            <section>
+                <section>
+                    <h3>Dipsås</h3>
+                    {/* <hr/> */}
+                    <h3>19 sek</h3>
+                </section>
+                {
+                    dipMenu && dipMenu.map((dip)=> (
+                        <DipOption key={dip.id} id={dip.id} title={dip.title} price={dip.price}/>
+                    ))  
+                }
+            </section>
         </main>
-      );
+    );
 }

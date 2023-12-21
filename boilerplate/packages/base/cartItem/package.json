@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/cart-item",
+    "main": "./index.ts"
+}
