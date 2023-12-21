@@ -57,6 +57,7 @@ export const LandingPage = () => {
     // const sortedMenu = menu.sort((a, b) => a.id - b.id);
 
     return (
+        <div className='landing-page'>
         <main>
             <div onClick={() => setCartModalOpen(true)}>
                 <svg>
@@ -90,5 +91,6 @@ export const LandingPage = () => {
                 }
             </section>
         </main>
+        </div>
     );
 }
