@@ -17,7 +17,7 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
         setTotalPrice(price * quantity)
     }
 
-    //Kör en useEffect när quantity ändras vid knapptryck
+    //Update totalprice when the item quantity changes
     useEffect(()=> {
         calcTotalPrice(price, itemQuantity)
     }, [itemQuantity])

@@ -22,7 +22,7 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
       const itemInCart = cart.find((cartItem) => cartItem.id === wonton.id);
     
       if (itemInCart) {
-        // Item is already in the cart, update the quantity
+        // Item is already in cart, update its quantity
         setCart(
           cart.map((cartItem) =>
             cartItem.id === wonton.id
@@ -56,7 +56,9 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
           <h3>{wonton.price} sek</h3>
         </section>
         <section>
-          <p>{wonton.desc}</p>
+          {wonton.ingredients?.map((ingredient) => (
+            <p>{ingredient}</p>       
+          ))}
         </section>
       </article>
     )
