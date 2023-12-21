@@ -1,11 +1,5 @@
-import { useState, useEffect, useContext } from "react";
+import { useEffect, useContext } from "react";
 import AppContext from "../../../core/context/AppContext"
-
-// type MenuItemProps = {
-//     title: string,
-//     price: number,
-//     desc: string
-// }
 
 type MenuItem = {
   id: string, 
@@ -16,8 +10,12 @@ type MenuItem = {
   ingredients?: [],
 } 
 
+type WontonItemProps = {
+  wonton: MenuItem
+}
 
-export const MenuItem = ({wonton} : MenuItem) => {  
+
+export const MenuItem = ({wonton} : WontonItemProps) => {  
     const {cart, setCart} = useContext(AppContext)
 
     const handleAddToCart = () => {

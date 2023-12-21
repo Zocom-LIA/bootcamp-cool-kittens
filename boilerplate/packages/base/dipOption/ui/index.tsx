@@ -1,12 +1,6 @@
 import { useEffect, useContext } from "react";
 import AppContext from "../../../core/context/AppContext"
 
-// type DipItemProps = {
-//     id: string,
-//     title: string, 
-//     price: number,
-// }
-
 type MenuItem = {
   id: string, 
   title: string,
@@ -16,7 +10,11 @@ type MenuItem = {
   ingredients?: [],
 } 
 
-export const DipOption = ({dip}: MenuItem) => {
+type DipItemProps = {
+  dip: MenuItem
+}
+
+export const DipOption = ({dip}: DipItemProps) => {
   const {cart, setCart} = useContext(AppContext)
 
   const handleAddToCart = () => {

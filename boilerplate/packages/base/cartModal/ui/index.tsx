@@ -1,9 +1,14 @@
-import React, {useContext, useEffect} from "react"
+import {useContext, useEffect} from "react"
 import AppContext from "../../../core/context/AppContext"
 import {CartItem} from '@zocom/cart-item'
 
-export const CartModal = ({isOpen, closeModal}) => {
-    const {cart, setCart} = useContext(AppContext)
+type CartModalProps = {
+    isOpen: boolean
+    closeModal: () => void
+}
+
+export const CartModal = ({isOpen, closeModal}: CartModalProps) => {
+    const {cart} = useContext(AppContext) //add setCart later
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
