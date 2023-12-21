@@ -46,7 +46,7 @@ export const CartModal = ({isOpen, closeModal}: CartModalProps) => {
                         cart.length > 0 ? 
                         (<section>
                             {cart.map((cartItem)=> (
-                                <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/>
+                                <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/> //Skulle kunna skicka en hel cartItem istället
                             ))}
                         </section>)
                         :(<section>Your cart is empty</section>)
