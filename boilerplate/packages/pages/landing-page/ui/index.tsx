@@ -73,7 +73,7 @@ export const LandingPage = () => {
             <section>
                 {
                     wontonMenu && wontonMenu.map((wonton)=> (
-                        <MenuItem key={wonton.id} title={wonton.title} price={wonton.price} desc={wonton.desc}/>
+                        <MenuItem key={wonton.id} title={wonton.title} price={wonton.price} desc={wonton.desc} wonton={wonton}/>
                     )) 
                 }
             </section>
@@ -85,7 +85,7 @@ export const LandingPage = () => {
                 </section>
                 {
                     dipMenu && dipMenu.map((dip)=> (
-                        <DipOption key={dip.id} id={dip.id} title={dip.title} price={dip.price}/>
+                        <DipOption key={dip.id} id={dip.id} title={dip.title} price={dip.price} dip={dip}/>
                     ))  
                 }
             </section>
