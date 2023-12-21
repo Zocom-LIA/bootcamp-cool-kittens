@@ -1,0 +1,19 @@
+@use '@zocom/styles' as *;
+
+.menu-item__card {
+    background-color: $clay;
+    color: $snow;
+    padding: $padding;
+    border: 10px solid black;
+
+    .title {
+        @include fontsizeLarge;
+        text-transform: uppercase;
+        @include grid-row;
+        align-items: flex-end;
+        
+        .dotted-line {
+            @include dotted-line;
+        }
+    }
+}

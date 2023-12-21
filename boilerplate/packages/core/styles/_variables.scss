@@ -89,3 +89,18 @@ $tabletBreakpoint: 640px;
   flex-direction: row;
   gap: $gap;
 }
+
+@mixin grid-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-auto-rows: minmax(30px, auto);
+  gap: $gap;
+}
+
+@mixin dotted-line {
+  align-self: flex-end;
+  justify-self: flex-end;
+  border-top: dotted;
+  height: 1px;
+  background-color: $clay;
+}
