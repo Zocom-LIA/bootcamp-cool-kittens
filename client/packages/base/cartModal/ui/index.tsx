@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import AppContext from "../../../core/context/AppContext"
-// import { AppContext } from '@zocom/app-context'
+import { AppContext } from '@zocom/app-context'
 import { CartItem } from '@zocom/cart-item'
 import { PrimaryButton } from '@zocom/primary-button'
 import { motion, AnimatePresence } from "framer-motion";

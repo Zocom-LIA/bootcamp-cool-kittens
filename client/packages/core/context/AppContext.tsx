@@ -1,4 +1,3 @@
-
 import {createContext, Dispatch, SetStateAction } from "react"
 
 type CartItemProps = {
@@ -14,6 +13,4 @@ type AppContextType = {
     setCart: Dispatch<SetStateAction<CartItemProps[]>>;
 }
 
-const AppContext = createContext({} as AppContextType)
-
-export default AppContext
+export const AppContext = createContext({} as AppContextType)

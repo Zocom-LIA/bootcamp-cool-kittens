@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import AppContext from "../../../core/context/AppContext"
+import { AppContext } from "@zocom/app-context";
 
 type MenuItem = {
   id: string, 

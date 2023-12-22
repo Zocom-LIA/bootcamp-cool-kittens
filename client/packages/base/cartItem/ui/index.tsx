@@ -1,5 +1,5 @@
 import {useState, useEffect, useContext} from 'react'
-import AppContext from "../../../core/context/AppContext"
+import { AppContext } from '@zocom/app-context'
 import {QtyButton} from '@zocom/qty-button'
 
 type CartItemProps = {

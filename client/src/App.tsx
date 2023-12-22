@@ -1,5 +1,5 @@
 import { AppRoutes } from "@zocom/router";
-import AppProvider from "../packages/core/context/AppProvider"
+import { AppProvider } from "@zocom/app-context";
 
 export function App() {
 
