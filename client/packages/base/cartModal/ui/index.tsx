@@ -4,7 +4,7 @@ import AppContext from "../../../core/context/AppContext"
 import { CartItem } from '@zocom/cart-item'
 import { PrimaryButton } from '@zocom/primary-button'
 import { motion, AnimatePresence } from "framer-motion";
-import { CartIcon } from '../../../pages/landing-page/ui/cartIcon'
+import { CartIcon } from '../../../core/assets/cartIcon'
 import './style.scss'
 
 export const CartModal = () => {
