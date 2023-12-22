@@ -3,7 +3,7 @@
 .landing-page {
     width: 100vw;
     height: 100vh;
-    background-color: #eee;
+    background-color: $mint;
     @include column;
     padding: $padding-large;
 
