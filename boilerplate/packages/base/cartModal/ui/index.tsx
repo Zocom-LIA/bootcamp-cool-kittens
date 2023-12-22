@@ -1,6 +1,7 @@
-import {useContext, useEffect, useState} from "react"
+import { useContext, useEffect, useState } from "react"
 import AppContext from "../../../core/context/AppContext"
-import {CartItem} from '@zocom/cart-item'
+import { CartItem } from '@zocom/cart-item'
+import { PrimaryButton } from '@zocom/primary-button'
 
 type CartModalProps = {
     isOpen: boolean
@@ -52,6 +53,8 @@ export const CartModal = ({isOpen, closeModal}: CartModalProps) => {
                         :(<section>Your cart is empty</section>)
                     }
                     <section>Total price: {totalPrice}</section>
+                    {/*Need to add an action to primary button -> send order*/}
+                    <PrimaryButton title="Take my money!" disabled={cart.length < 1}/>
                 </main>
             )}
         </>
