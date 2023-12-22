@@ -24,7 +24,7 @@ export const MenuItem = ({title, price, desc} : MenuItemProps) => {
         onClick={handleItemClick}
         style={{
           cursor: "pointer",
-          border: cart ? "2px solid green" : "none",
+          // border: cart ? "2px solid green" : "none",
         }}
       >
         <section className='title'>
@@ -33,7 +33,7 @@ export const MenuItem = ({title, price, desc} : MenuItemProps) => {
           <h3>{price} sek</h3>
         </section>
         <section>
-          <p>{desc}</p>
+          <p className='ingredients'>{desc}</p>
         </section>
         {cart && <p> Added to cart </p>}
       </article>

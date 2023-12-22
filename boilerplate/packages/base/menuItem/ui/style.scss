@@ -4,7 +4,7 @@
     background-color: $clay;
     color: $snow;
     padding: $padding;
-    border: 10px solid black;
+    border-bottom: 1px dotted $shade24Light;
 
     .title {
         @include fontsizeLarge;
@@ -15,5 +15,10 @@
         .dotted-line {
             @include dotted-line;
         }
+    }
+
+    .ingredients {
+        padding-top: $padding-sml;
+        padding-bottom: $padding-sml;
     }
 }
