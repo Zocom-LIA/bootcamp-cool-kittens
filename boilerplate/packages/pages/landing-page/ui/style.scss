@@ -11,6 +11,8 @@
         background-color: $clay;
         color: $snow;
         padding: $padding;
+        border-radius: 0 0 $radius-tier-2 $radius-tier-2;
+        box-sizing: border-box;
 
         .title {
             @include fontsizeLarge;
@@ -28,7 +30,7 @@
     .dip-options {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: minmax(40px, auto);
+        grid-auto-rows: minmax(50px, auto);
         gap: $gap;
     }
 }
