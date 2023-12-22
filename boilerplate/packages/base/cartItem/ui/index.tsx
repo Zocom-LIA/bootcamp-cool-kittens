@@ -1,5 +1,6 @@
 import {useState, useEffect, useContext} from 'react'
 import AppContext from "../../../core/context/AppContext"
+import {QtyButton} from '@zocom/qty-button'
 
 type CartItemProps = {
     id: string
@@ -60,9 +61,9 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
                 <h3>{totalPrice} sek</h3>
             </section>
             <section>
-                <button onClick={() => incrementQty(itemQuantity)}>+</button>
-                {itemQuantity}
-                <button onClick={() => decrementQty(itemQuantity)}>-</button>
+                <QtyButton title='+' action={() => incrementQty(itemQuantity)}/>
+                <span>{itemQuantity}</span>
+                <QtyButton title='-' action={() => decrementQty(itemQuantity)}/>
             </section>
         </article>
     )
