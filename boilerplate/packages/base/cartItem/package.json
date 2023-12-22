@@ -1,0 +1,7 @@
+{
+    "name": "@zocom/cart-item",
+    "main": "./index.ts",
+    "dependencies": {
+        "@zocom/cart-item": "*"
+    }
+}
