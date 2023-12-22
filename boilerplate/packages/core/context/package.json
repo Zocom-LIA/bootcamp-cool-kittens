@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/app-context",
+    "main": "./index.ts"
+}
