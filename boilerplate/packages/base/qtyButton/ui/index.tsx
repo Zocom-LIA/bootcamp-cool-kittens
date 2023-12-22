@@ -1,4 +1,5 @@
 import {motion} from "framer-motion"
+import './style.scss'
 
 type QtyButtonProps = {
     title: string
@@ -8,7 +9,7 @@ type QtyButtonProps = {
 
 export const QtyButton = ({title, action, disabled}: QtyButtonProps) => {
     return (
-        <motion.button className="" onClick = {action} disabled={disabled}>
+        <motion.button className="button--quantity" onClick = {action} disabled={disabled}>
             {title}
         </motion.button>
     )
