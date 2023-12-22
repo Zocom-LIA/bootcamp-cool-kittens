@@ -1,6 +1,5 @@
 import { useEffect, useContext } from "react";
 import AppContext from "../../../core/context/AppContext"
-import { useState } from "react";
 import './style.scss';
 
 type MenuItem = {
@@ -51,24 +50,17 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
         onClick={handleAddToCart}
         style={{
           cursor: "pointer",
-          // border: cart ? "2px solid green" : "none",
         }}
       >
-        <section>
+        <section className='title'>
           <h3>{wonton.title}</h3>
+          <hr className='dotted-line'/>
           <h3>{wonton.price} sek</h3>
         </section>
-        <section>
+        <section className='ingredients'>
           {wonton.ingredients?.map((ingredient) => (
             <p>{ingredient}</p>       
           ))}
-        <section className='title'>
-          <h3>{title}</h3>
-          <hr className='dotted-line'/>
-          <h3>{price} sek</h3>
-        </section>
-        <section>
-          <p className='ingredients'>{desc}</p>
         </section>
       </article>
     )
