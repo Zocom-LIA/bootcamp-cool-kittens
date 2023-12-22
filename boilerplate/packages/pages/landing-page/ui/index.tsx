@@ -70,7 +70,7 @@ export const LandingPage = () => {
                         )
                     }
                     
-                    <h2>Meny</h2>
+                    <h2 className='menu-title'>Meny</h2>
                     <section>
                         {
                             wontonMenu && wontonMenu.map((wonton)=> (

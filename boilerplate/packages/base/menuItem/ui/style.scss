@@ -8,7 +8,8 @@
     cursor: pointer;
 
     .title {
-        @include fontsizeLarge;
+        @include fontsizeMedium;
+        font-weight: 600;
         text-transform: uppercase;
         @include grid-row;
         align-items: flex-end;
@@ -19,6 +20,7 @@
     }
 
     .ingredients {
+        @include fontsizeSmall;
         padding-top: $padding-sml;
         padding-bottom: $padding-sml;
         @include row;
