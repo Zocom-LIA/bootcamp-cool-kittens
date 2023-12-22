@@ -1,0 +1,8 @@
+@use '@zocom/styles' as *;
+
+.dip-option__button {
+    background-color: $shade24Light;
+    color: $snow;
+    border-radius: $radius-tier-2;
+    padding: $padding-sml;
+}

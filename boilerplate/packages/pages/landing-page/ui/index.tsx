@@ -78,17 +78,19 @@ export const LandingPage = () => {
                             )) 
                         }
                     </section>
-                    <section>
-                        <section>
+                    <section className='dip-option__card'>
+                        <section className='title'>
                             <h3>Dipsås</h3>
-                            {/* <hr/> */}
+                            <hr className='dotted-line'/>
                             <h3>19 sek</h3>
                         </section>
+                        <section className='dip-options'>
                         {
                             dipMenu && dipMenu.map((dip)=> (
                                 <DipOption key={dip.id} dip={dip}/>
                             ))  
                         }
+                        </section>
                     </section>
                 </main>
                 )

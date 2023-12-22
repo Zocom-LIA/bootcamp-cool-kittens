@@ -21,5 +21,6 @@
     .ingredients {
         padding-top: $padding-sml;
         padding-bottom: $padding-sml;
+        @include row;
     }
 }

@@ -7,11 +7,30 @@
     @include column;
     padding: $padding-large;
 
-    .quote {
-        margin: auto;
-        max-width: 60vw;
-        width: 100%;
-        text-align: center;
-        @include fontsizeLarge;
+    .dip-option__card {
+        background-color: $clay;
+        color: $snow;
+        padding: $padding;
+        border-radius: 0 0 $radius-tier-2 $radius-tier-2;
+        box-sizing: border-box;
+
+        .title {
+            @include fontsizeLarge;
+            text-transform: uppercase;
+            @include grid-row;
+            align-items: flex-end;
+            padding-bottom: $padding-large;
+
+            .dotted-line {
+                @include dotted-line;
+            }
+        }
+    }
+
+    .dip-options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(50px, auto);
+        gap: $gap;
     }
 }
