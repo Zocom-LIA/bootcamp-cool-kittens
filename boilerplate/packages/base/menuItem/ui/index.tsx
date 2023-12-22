@@ -43,14 +43,13 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
       
   }, [cart]);
 
+  //The ingredients are transformed to a single string separated by commas. 
+  const joinedIngredients = wonton.ingredients? wonton.ingredients.join(', '): null;
 
     return (
         <article
         className='menu-item__card'
         onClick={handleAddToCart}
-        style={{
-          cursor: "pointer",
-        }}
       >
         <section className='title'>
           <h3>{wonton.title}</h3>
@@ -58,9 +57,7 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
           <h3>{wonton.price} sek</h3>
         </section>
         <section className='ingredients'>
-          {wonton.ingredients?.map((ingredient) => (
-            <p>{ingredient}</p>       
-          ))}
+          {joinedIngredients}
         </section>
       </article>
     )

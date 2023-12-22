@@ -5,6 +5,7 @@
     color: $snow;
     padding: $padding;
     border-bottom: 1px dotted $shade24Light;
+    cursor: pointer;
 
     .title {
         @include fontsizeLarge;
