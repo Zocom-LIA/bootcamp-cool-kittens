@@ -100,7 +100,7 @@ $tabletBreakpoint: 640px;
 @mixin dotted-line {
   align-self: flex-end;
   justify-self: flex-end;
-  border-top: dotted;
+  border-top: 2px dotted;
   height: 1px;
   background-color: $clay;
 }

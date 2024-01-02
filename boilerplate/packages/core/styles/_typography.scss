@@ -7,7 +7,12 @@
 $base: 16px;
 
 @mixin fontsizeLarge {
-    font-size: calc($base * 1.6);
+    font-size: calc($base * 2.2);
+    line-height: 120%;
+}
+
+@mixin fontsizeMedium {
+    font-size: calc($base * 1.4);
     line-height: 120%;
 }
 
@@ -19,4 +24,8 @@ $base: 16px;
 @mixin fontsizeSmall {
     font-size: calc($base * .8);
     line-height: 120%;
+}
+
+@mixin fontsizeMini {
+    font-size: calc($base * .6);
 }
