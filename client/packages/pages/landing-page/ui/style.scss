@@ -6,7 +6,7 @@
     background-image: url('./assets/leaf.png');
     background-color: $mint;
     @include column;
-    padding: $padding-large;
+    padding: 0 $padding;
 
     .menu-title {
         background-color: $clay;

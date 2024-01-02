@@ -3,7 +3,7 @@ import './style.scss';
 
 export const Header = () => {
     return (
-        <article>
+        <article className='page-header'>
             <img src="./assets/header-logo.svg" alt="YYGS logo" />
             <CartModal/>
         </article>
