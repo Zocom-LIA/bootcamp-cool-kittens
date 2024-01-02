@@ -6,7 +6,7 @@ import { generateTimestamp } from "./generateTimeStamp";
 import { calculateTotalPrice } from "./calculateTotalPrice";
 
 exports.handler = async (event) => {
-  const orderItems = JSON.parse(event.body).orderItems;
+  const orderItems = JSON.parse(event.body).orderItems; //kundkorgen
   const orderNr = generateOrderNumber();
 
   try {
