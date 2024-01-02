@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/page-header",
+    "main": "./index.ts"
+  }

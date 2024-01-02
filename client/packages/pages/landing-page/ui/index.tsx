@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CartModal } from '@zocom/cart-modal'
+import { Header } from '@zocom/page-header'
 import { MenuItem } from '@zocom/menu-item'
 import { DipOption } from '@zocom/dip-option'
 import { menuData } from '..';
@@ -39,9 +39,7 @@ export const LandingPage = () => {
 
     return (
         <div className='landing-page'>
-            <header>
-                <CartModal />
-            </header>
+            <Header/>
             <main>                    
                 <h2 className='menu-title'>Meny</h2>
                 <section>
