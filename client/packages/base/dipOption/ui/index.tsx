@@ -1,5 +1,6 @@
 import { useEffect, useContext } from "react";
 import { AppContext } from "@zocom/app-context";
+import './style.scss';
 
 type MenuItem = {
   id: string, 
@@ -43,15 +44,13 @@ export const DipOption = ({dip}: DipItemProps) => {
 
     return (
         <button
+        className='dip-option__button'
       onClick={handleAddToCart}
       style={{
-        border: cart ? "2px solid green" : "none",
         cursor: "pointer",
       }}
     >
       {dip.title}
-     
-    {cart && <p> Added to cart </p>}
     </button>
     )
 }
