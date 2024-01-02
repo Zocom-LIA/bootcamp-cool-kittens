@@ -7,15 +7,25 @@
     @include column;
     padding: $padding-large;
 
+    .menu-title {
+        background-color: $clay;
+        @include fontsizeLarge;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $snow;
+        padding: $padding-large $padding 0;
+        border-radius: $radius-tier-2 $radius-tier-2 0 0;
+    }
+
     .dip-option__card {
         background-color: $clay;
         color: $snow;
         padding: $padding;
         border-radius: 0 0 $radius-tier-2 $radius-tier-2;
-        box-sizing: border-box;
 
         .title {
-            @include fontsizeLarge;
+            @include fontsizeMedium;
+            font-weight: 600;
             text-transform: uppercase;
             @include grid-row;
             align-items: flex-end;
@@ -30,7 +40,7 @@
     .dip-options {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: minmax(50px, auto);
+        grid-auto-rows: minmax(45px, auto);
         gap: $gap;
     }
 }
