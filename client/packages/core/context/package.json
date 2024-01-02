@@ -1,0 +1,7 @@
+{
+    "name": "@zocom/app-context",
+    "main": "./index.ts",
+    "dependencies": {
+        "@zocom/app-context": "*"
+    }
+}

@@ -1,5 +1,6 @@
 import { useState } from "react"
-import AppContext from "./AppContext"
+import { AppContext }from '@zocom/app-context'
+
 
 type CartItemProps = {
     id: string, 
@@ -9,7 +10,7 @@ type CartItemProps = {
     quantity: number
 }
 
-const AppProvider = ({children}: any) => {
+export const AppProvider = ({children}: any) => {
     const [cart, setCart] = useState<CartItemProps[]>([])
 
     return (
@@ -18,5 +19,3 @@ const AppProvider = ({children}: any) => {
         </AppContext.Provider>
     )
 }
-
-export default AppProvider
