@@ -34,6 +34,12 @@ functions:
         - httpApi:
             path: '/api/putOrder'
             method: POST
+    getSingleOrder:
+      handler: functions/getSingleOrder/index.handler
+      events: 
+        - httpApi:
+            path: '/api/order/{orderNr}'
+            method: GET
 
 resources:
   Resources:
