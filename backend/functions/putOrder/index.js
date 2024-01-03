@@ -4,6 +4,7 @@ import { sendResponse } from "../../responses/index";
 import { generateOrderNumber } from "./generateOrderNr";
 import { generateTimestamp } from "./generateTimeStamp";
 import { calculateTotalPrice } from "./calculateTotalPrice";
+import { format } from "date-fns";
 
 exports.handler = async (event) => {
   const orderItems = JSON.parse(event.body);
@@ -15,7 +16,7 @@ exports.handler = async (event) => {
       TableName: "yygs-orders",
       Item: {
         orderNr: orderNr,
-        timeStamp: generateTimestamp(),
+        timeStamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"), //Direkt här eller i separat funktion?
         totalPrice: calculateTotalPrice(orderItems),
         orderItems: orderItems,
         status: orderStatus,
