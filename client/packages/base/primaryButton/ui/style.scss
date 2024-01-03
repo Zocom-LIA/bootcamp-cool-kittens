@@ -1,0 +1,30 @@
+@use '@zocom/styles' as *;
+
+.primary__button {
+    width: 100%;
+    color: $snow;
+    @include fontsizeMedium;
+    font-weight: 600;
+    text-transform: uppercase;
+    @include center;
+    padding: $padding-large 0;
+    margin: $margin-sml 0;
+    border-radius: $radius-tier-2;
+}
+
+.black-bg {
+    background-color: $coal;
+}
+
+.no-bg {
+    background-color: none;
+    border: 2px solid $snow;
+}
+
+.green-bg {
+    background-color: $darkMint;
+}
+
+.red-bg {
+    background-color: $alert;
+}
