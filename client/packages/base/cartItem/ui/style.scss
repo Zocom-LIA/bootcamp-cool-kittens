@@ -2,7 +2,6 @@
 
 .cart-item__card {
     color: $coal;
-    padding: $padding;
     border-bottom: 1px dotted $shade24Dark;
     cursor: pointer;
 
@@ -17,5 +16,14 @@
             @include dotted-line;
             background-color: $ash;
         }
+    }
+
+    .quantity-selection {
+        @include fontsizeSmall;
+        font-weight: 700;
+        padding: $padding-sml 0;
+        @include row;
+        align-items: center;
+        gap: $gap-sml;
     }
 }

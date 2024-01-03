@@ -94,7 +94,7 @@ export const CartModal = () => {
                                 <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/> //Skulle kunna skicka en hel cartItem istället
                             ))}
                         </section>)
-                        :(<section>Your cart is empty</section>)
+                        :(<section className='cart-empty__notif'>Your cart is empty</section>)
                         }
                         <section>Total price: {totalPrice}</section>
                         <PrimaryButton title="Take my money!" disabled={cart.length < 1} action={handleSendOrder}/>  
