@@ -40,7 +40,7 @@ export const LandingPage = () => {
     return (
         <div className='landing-page'>
             <Header/>
-            <main>                    
+            <main className='menu-wrap'>                    
                 <h2 className='menu-title'>Meny</h2>
                 <section>
                     {
