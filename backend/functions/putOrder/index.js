@@ -8,6 +8,7 @@ import { calculateTotalPrice } from "./calculateTotalPrice";
 exports.handler = async (event) => {
   const orderItems = JSON.parse(event.body);
   const orderNr = generateOrderNumber();
+  const orderStatus = event.headers["x-order-status"] || undefined;
 
   try {
     const command = new PutCommand({
@@ -17,7 +18,7 @@ exports.handler = async (event) => {
         timeStamp: generateTimestamp(),
         totalPrice: calculateTotalPrice(orderItems),
         orderItems: orderItems,
-        // status: status,
+        status: orderStatus,
         // deliveryTime: deliveryTime,
       },
     });
