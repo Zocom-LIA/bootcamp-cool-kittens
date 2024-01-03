@@ -62,14 +62,14 @@ export const CartModal = () => {
         <main>
             <div className="cart__icon" onClick={()=>setCartModalOpen(!cartModalOpen)}>
                 {CartIcon}
-            </div>
-            {
-                !cartModalOpen && (
-                    cartQty > 0 && (
-                        <span className='cart__qty'>{cartQty}</span>
+                {
+                    !cartModalOpen && (
+                        cartQty > 0 && (
+                            <span className='cart__qty'>{cartQty}</span>
+                        )
                     )
-                )
-            }
+                }
+            </div>
 
 
             <AnimatePresence>
