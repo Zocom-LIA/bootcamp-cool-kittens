@@ -81,17 +81,20 @@ export const CartModal = () => {
         <main>
             <div className="cart__icon" onClick={()=>setCartModalOpen(!cartModalOpen)}>
                 {CartIcon}
+                {
+                    !cartModalOpen && (
+                        cartQty > 0 && (
+                            <span className='cart__qty'>{cartQty}</span>
+                        )
+                    )
+                }
             </div>
-            {
-                cartQty > 0 && (
-                    <span className='cart__qty'>{cartQty}</span>
-                )
-            }
+
 
             <AnimatePresence>
                 {cartModalOpen && (
                     <motion.main             
-                    className="cart__container"
+                    className="cart__modal"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "100vh", opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -105,14 +108,20 @@ export const CartModal = () => {
                     }}>
                         {
                         cart.length > 0 ? 
-                        (<section>
+                        (<section className='cart-item__container'>
                             {cart.map((cartItem)=> (
                                 <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/> //Skulle kunna skicka en hel cartItem istället
                             ))}
                         </section>)
-                        :(<section>Your cart is empty</section>)
+                        :(<section className='cart-empty__notif'>Your cart is empty</section>)
                         }
-                        <section>Total price: {totalPrice}</section>
+                        <article className='price-summary__card'>
+                            <section>
+                                <h3 className='title'>Totalt</h3>
+                                <p className='tax'>inkl 20% moms</p>
+                            </section>
+                            <h3 className='price-total'>{totalPrice} Sek</h3>
+                        </article>
                         <PrimaryButton title="Take my money!" disabled={cart.length < 1} action={handleSendOrder}/>  
                     </motion.main>
                 )}

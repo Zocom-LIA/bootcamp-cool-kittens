@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import { AppContext } from '@zocom/app-context'
 import {QtyButton} from '@zocom/qty-button'
+import './style.scss';
 
 type CartItemProps = {
     id: string
@@ -54,15 +55,15 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
     }
 
     return (
-        <article>
-            <section>
+        <article className='cart-item__card'>
+            <section className='title'>
                 <h3>{title}</h3>
-                {/* <hr className='dotted'/> */}
+                <hr className='dotted-line'/>
                 <h3>{totalPrice} sek</h3>
             </section>
-            <section>
+            <section className='quantity-selection'>
                 <QtyButton title='+' action={() => incrementQty(itemQuantity)}/>
-                <span>{itemQuantity}</span>
+                <span>{itemQuantity} stycken</span>
                 <QtyButton title='-' action={() => decrementQty(itemQuantity)}/>
             </section>
         </article>

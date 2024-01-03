@@ -3,8 +3,7 @@
 .button--quantity {
     background-color: $shade24Dark;
     color: $coal;
-    width: 24px; //Should be changed
-    height: 24px; //Should be changed
-    border-radius: 20px; //Should be changed
-    padding: $padding-nano;
+    @include small-circle;
+    @include fontsizeLarge;
+    @include center;
 }

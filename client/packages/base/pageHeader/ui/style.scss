@@ -2,7 +2,9 @@
 
 .page-header {
     width: 100%;
+    max-width: 400px;
     display: flex;
     justify-content: space-between;
     padding: $padding 0;
+    padding-bottom: $padding-large;
 }

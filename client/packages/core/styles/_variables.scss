@@ -104,3 +104,9 @@ $tabletBreakpoint: 640px;
   height: 1px;
   background-color: $clay;
 }
+
+@mixin small-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}

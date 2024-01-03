@@ -1,33 +1,79 @@
 @use '@zocom/styles' as *;
+
 .cart__icon {
     position: relative;
     z-index: 2;
-    height: 50px;
-    width: 50px;
-    background-color: $snow;
+    background-color: $ash;
+    height: 64px;
+    width: 64px;
+    @include center;
+    border-radius: $radius-tier-2;
 }
 
 .cart__qty {
     position: absolute;
-    top: 0;
-    right: 0;
-    border-radius: 50%;
+    z-index: 3;
+    top: -10px;
+    right: -10px;
+    color: $snow;
+    @include small-circle;
+    @include fontsizeSmall;
+    @include center;
     background-color: $alert;
 }
 
-.cart__container{
-    background-color: $ash;
-    color:var(--main-text-color);
-    max-width: 100%;
-    height: 100%;
+.cart__modal{
     position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
+    background-color: $ash;
+    width: 100%;
+    height: 100%;
+    padding: $padding-large;
     gap: 2rem;
-    z-index: 1;
+
+    .cart-item__container {
+        margin: $margin 0;
+        margin-top: 4rem;
+        height: 70%;
+        padding: $padding 0;
+        overflow: auto;
+    }
+
+    .cart-empty__notif {
+        margin: $margin 0;
+        margin-top: 4rem;
+        height: 70%;
+        @include fontsizeMedium;
+        @include center;
+    }
+
+    .price-summary__card {
+        background-color: $shade24Dark;
+        color: $coal;
+        @include row;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding;
+        margin: $margin-sml 0;
+        border-radius: $radius-tier-2;
+
+        .title {
+            @include fontsizeMedium;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tax {
+            @include fontsizeSmall;
+            font-weight: 600;
+        }
+
+        .price-total {
+            @include fontsizeLarge;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    }
 }
