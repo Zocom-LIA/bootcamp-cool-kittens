@@ -11,6 +11,8 @@ type CartItemProps = {
 type AppContextType = {
     cart: CartItemProps[]
     setCart: Dispatch<SetStateAction<CartItemProps[]>>;
+    orderStatus: string;
+    setOrderStatus: Dispatch<SetStateAction<string>>;
 }
 
 export const AppContext = createContext({} as AppContextType)

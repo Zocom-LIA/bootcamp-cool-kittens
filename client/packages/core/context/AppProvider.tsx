@@ -12,9 +12,10 @@ type CartItemProps = {
 
 export const AppProvider = ({children}: any) => {
     const [cart, setCart] = useState<CartItemProps[]>([])
+    const [orderStatus, setOrderStatus] = useState<string>("preparing")
 
     return (
-        <AppContext.Provider value={{cart, setCart}}>
+        <AppContext.Provider value={{cart, setCart, orderStatus, setOrderStatus}}>
             {children}
         </AppContext.Provider>
     )
