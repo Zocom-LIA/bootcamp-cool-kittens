@@ -4,6 +4,7 @@ import {
   } from "react-router-dom";
   
 import { LandingPage } from "@zocom/landing-page";
+import { ConfirmationPage } from "@zocom/confirmation-page";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/kitchen",
     // element: <KitchenPage />
+  },
+  {
+    path: "/confirmation",
+     element: <ConfirmationPage />
   },
   {
     path: "*",
