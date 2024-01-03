@@ -7,7 +7,7 @@ import { CartIcon } from '../../../core/assets/cartIcon'
 import './style.scss'
 
 export const CartModal = () => {
-    const {cart} = useContext(AppContext) //add setCart later
+    const {cart, setCart} = useContext(AppContext)
     const [cartQty, setCartQty] = useState<number>(0)
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [cartModalOpen, setCartModalOpen] = useState<boolean>(false);
@@ -53,8 +53,22 @@ export const CartModal = () => {
         }
     }, [cart]);
 
-    const handleSendOrder = () => {
+    const API_URL = 'https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/putOrder'
+
+    const handleSendOrder = async () => {
         console.log("Pay button");
+        const response = await fetch(API_URL, 
+            {
+                method: 'POST',
+                body: JSON.stringify(cart),
+                // headers: 
+            });
+        
+        const data = await response.json()
+        console.log(data);
+        
+        setCart([])
+        //Route to confirmation page /order/${data.orderNr}
         
     }
 
