@@ -64,15 +64,18 @@ export const CartModal = () => {
                 {CartIcon}
             </div>
             {
-                cartQty > 0 && (
-                    <span className='cart__qty'>{cartQty}</span>
+                !cartModalOpen && (
+                    cartQty > 0 && (
+                        <span className='cart__qty'>{cartQty}</span>
+                    )
                 )
             }
+
 
             <AnimatePresence>
                 {cartModalOpen && (
                     <motion.main             
-                    className="cart__container"
+                    className="cart__modal"
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "100vh", opacity: 1 }}
                     transition={{ duration: 0.5 }}
@@ -86,7 +89,7 @@ export const CartModal = () => {
                     }}>
                         {
                         cart.length > 0 ? 
-                        (<section>
+                        (<section className='cart-item__container'>
                             {cart.map((cartItem)=> (
                                 <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/> //Skulle kunna skicka en hel cartItem istället
                             ))}

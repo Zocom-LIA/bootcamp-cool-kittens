@@ -1,0 +1,21 @@
+@use '@zocom/styles' as *;
+
+.cart-item__card {
+    color: $coal;
+    padding: $padding;
+    border-bottom: 1px dotted $shade24Dark;
+    cursor: pointer;
+
+    .title {
+        @include fontsizeMedium;
+        font-weight: 600;
+        text-transform: uppercase;
+        @include grid-row;
+        align-items: flex-end;
+
+        .dotted-line {
+            @include dotted-line;
+            background-color: $ash;
+        }
+    }
+}
