@@ -96,7 +96,13 @@ export const CartModal = () => {
                         </section>)
                         :(<section className='cart-empty__notif'>Your cart is empty</section>)
                         }
-                        <section>Total price: {totalPrice}</section>
+                        <article className='price-summary__card'>
+                            <section>
+                                <h3 className='title'>Totalt</h3>
+                                <p className='tax'>inkl 20% moms</p>
+                            </section>
+                            <h3 className='price-total'>{totalPrice} Sek</h3>
+                        </article>
                         <PrimaryButton title="Take my money!" disabled={cart.length < 1} action={handleSendOrder}/>  
                     </motion.main>
                 )}

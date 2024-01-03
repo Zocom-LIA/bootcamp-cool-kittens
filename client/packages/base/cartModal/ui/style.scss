@@ -40,4 +40,40 @@
         padding: $padding 0;
         overflow: auto;
     }
+
+    .cart-empty__notif {
+        margin: $margin 0;
+        margin-top: 4rem;
+        height: 70%;
+        @include fontsizeMedium;
+        @include center;
+    }
+
+    .price-summary__card {
+        background-color: $shade24Dark;
+        color: $coal;
+        @include row;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding;
+        margin: $margin-sml 0;
+        border-radius: $radius-tier-2;
+
+        .title {
+            @include fontsizeMedium;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .tax {
+            @include fontsizeSmall;
+            font-weight: 600;
+        }
+
+        .price-total {
+            @include fontsizeLarge;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+    }
 }
