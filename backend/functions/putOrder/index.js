@@ -4,6 +4,7 @@ import { sendResponse } from "../../responses/index";
 import { generateOrderNumber } from "./generateOrderNr";
 import { generateTimestamp } from "./generateTimeStamp";
 import { calculateTotalPrice } from "./calculateTotalPrice";
+import { calculateDeliveryTime } from "./calculateDeliveryTime";
 import { format } from "date-fns";
 
 exports.handler = async (event) => {
@@ -20,7 +21,7 @@ exports.handler = async (event) => {
         totalPrice: calculateTotalPrice(orderItems),
         orderItems: orderItems,
         status: orderStatus,
-        // deliveryTime: deliveryTime,
+        deliveryTime: calculateDeliveryTime(orderItems),
       },
     });
 
@@ -32,9 +33,11 @@ exports.handler = async (event) => {
       orderNr: orderNr,
     });
   } catch (error) {
+    console.log("Error", error);
     return sendResponse(500, {
       success: false,
       message: "Unable to add order to database",
+      error: error,
     });
   }
 };
