@@ -92,7 +92,7 @@ $tabletBreakpoint: 640px;
 
 @mixin grid-row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-auto-rows: minmax(30px, auto);
   gap: $gap;
 }

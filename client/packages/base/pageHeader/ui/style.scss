@@ -1,0 +1,8 @@
+@use '@zocom/styles' as *;
+
+.page-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: $padding 0;
+}
