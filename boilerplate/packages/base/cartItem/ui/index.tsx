@@ -24,7 +24,7 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
     }, [itemQuantity])
 
     const incrementQty = (quantity:number) => {
-        const updatedQuantity = quantity += 1
+        const updatedQuantity = quantity++
         
         setItemQuantity(updatedQuantity)
         setCart(
@@ -37,7 +37,7 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
     }
 
     const decrementQty = (quantity:number) => {
-        const updatedQuantity = quantity -= 1
+        const updatedQuantity = quantity--
         
         if (updatedQuantity === 0) {
             setCart(cart.filter((cartItem) => cartItem.id !== id))

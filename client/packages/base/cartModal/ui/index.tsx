@@ -53,9 +53,9 @@ export const CartModal = () => {
         }
     }, [cart]);
 
-    const API_URL = 'https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/putOrder'
+    const API_URL = 'https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/putOrder' //samla API i en annan fil och importera.
 
-    const handleSendOrder = async () => {
+    const handleSendOrder = async () => { //bryta ut till en data fil
 
         const headers = {
             "Content-Type": "application/json",

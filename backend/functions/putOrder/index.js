@@ -23,7 +23,7 @@ exports.handler = async (event) => {
       },
     });
 
-    const response = await docClient.send(command);
+    await docClient.send(command);
 
     return sendResponse(200, {
       success: true,
