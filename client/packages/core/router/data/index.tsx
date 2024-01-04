@@ -8,19 +8,19 @@ import { ConfirmationPage } from "@zocom/confirmation-page";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />,
   },
   {
-    path: "/kitchen",
+    path: '/kitchen',
     // element: <KitchenPage />
   },
   {
-    path: "/confirmation",
+    path: '/order/:orderNr',
      element: <ConfirmationPage />
   },
   {
-    path: "*",
+    path: '*',
     element: <p>Page Not Found</p>,
   },
 ]);

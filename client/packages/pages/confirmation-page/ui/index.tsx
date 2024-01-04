@@ -1,16 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from '@zocom/page-header';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { FoodBoxIcon } from '../../../core/assets/foodBoxIcon'
 import { PrimaryButton } from '@zocom/primary-button'
+import { orderData } from '..';
 import './style.scss';
 
 
 
 export const ConfirmationPage = () => {
-  const [eta, setEta] = useState<number>(5); 
-  
+  const { orderNr } = useParams();
+  const {fetchOrder} = orderData();
+  const [order, setOrder] = useState({})
 
+  useEffect(() => {
+    async function handleFetchOrder() {
+        if(orderNr) {
+          const data = await fetchOrder(orderNr)
+          const order = data.order
+          setOrder(order? order:null)
+          console.log("Order", order)
+        }
+    }
+    handleFetchOrder();
+}, []);
+  
 
   return (
     <div className='confirmation-page'>
@@ -21,14 +35,12 @@ export const ConfirmationPage = () => {
         <section>
         </section>
         <section className='eta-timer'>
-          <p>ETA: {eta} minuter</p>
+          {/* <p>ETA: {eta} minuter</p> */}
           {/* <p>Order ID: {orderId}</p>  */}
         </section>
         <section className='action'>
-        <PrimaryButton className='black-bg' title='Beställ mer' />
-        <PrimaryButton className='no-bg' title='Se Kvitto' />
-        {/* <Link to='/bestall-mer' className='order'>Beställ mer</Link> // 
-        <Link to='/se-kvitto' className='receipt'>Se kvitto</Link> // onlick */}
+        {/* <PrimaryButton className='black-bg' title='Beställ mer' />
+        <PrimaryButton className='no-bg' title='Se Kvitto' /> */}
         </section>
       </main>
     </div>
