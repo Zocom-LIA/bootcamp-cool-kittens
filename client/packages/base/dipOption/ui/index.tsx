@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { AppContext } from "@zocom/app-context";
 import './style.scss';
 
