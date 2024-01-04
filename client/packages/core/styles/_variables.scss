@@ -84,6 +84,11 @@ $tabletBreakpoint: 640px;
   gap: $gap-sml;
 }
 
+@mixin column-no-center {
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin row {
   display: flex;
   flex-direction: row;
