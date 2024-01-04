@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { AppContext } from "@zocom/app-context";
 import './style.scss';
 
@@ -43,14 +44,13 @@ export const DipOption = ({dip}: DipItemProps) => {
 // }, [cart]);
 
     return (
-        <button
-        className='dip-option__button'
+      <motion.button
+      whileHover={{backgroundColor: "#353131"}}
+      whileTap={{scale: 0.95}}
+      className='dip-option__button'
       onClick={handleAddToCart}
-      style={{
-        cursor: "pointer",
-      }}
-    >
-      {dip.title}
-    </button>
+      >
+        {dip.title}
+      </motion.button>
     )
 }
