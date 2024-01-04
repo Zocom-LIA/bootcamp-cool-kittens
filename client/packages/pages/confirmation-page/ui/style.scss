@@ -6,53 +6,40 @@
     background-color: $clay;
     @include column;
     padding: 0 $padding;
-}
 
-    .menu-wrap {
-        width: 326px;
-        max-width: 390px;
+    .confirmation-wrap {
+        width: 100%;
+        height: 100%;
+        max-width: 400px;
         text-align: center;
-    }
-
-        .menu-title {
-            background-color: $clay;
-            width: 326px;
+        @include column-no-center;
+        
+        .title {
             @include fontsizeLarge;
             font-weight: 700;
             text-transform: uppercase;
             color: $snow; 
-            padding-bottom: $padding;
+            padding: $padding;
         }
-
-        .eta-timer {
+    
+        .eta-text {
+            @include fontsizeETA;
             font-weight: 500;
             color: $snow;
-            @include fontsizeMedium;
-            padding-bottom: 100px;
+            text-transform: uppercase;
         }
-
-
-        .action {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-         .order, .receipt {
+    
+        .order-id {
+            @include fontsizeRegular;
             color: $snow;
+            text-transform: uppercase;
             padding: $padding;
-            @include fontsizeMedium;
-            border-radius: 4px;
-            text-decoration: none;
-            margin-bottom: 20px; // Adjusted margin for a gap
         }
-        
-        .order {
-            background-color: $coal;
-            width: 90%;
+
+        .button__container {
+            margin-top: auto;
         }
-        .receipt {
-            border: 2px solid $snow;
-            width: 90%;
-        }
+    }
+}
+
  
