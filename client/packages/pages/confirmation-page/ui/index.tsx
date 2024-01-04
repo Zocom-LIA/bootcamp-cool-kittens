@@ -4,6 +4,7 @@ import { orderData } from '..'
 import { Header } from '@zocom/page-header';
 import './style.scss';
 import { differenceInMinutes, parse } from 'date-fns';
+import { PrimaryButton } from '@zocom/primary-button';
 
 type Order = {
   orderNr: string;
@@ -26,11 +27,13 @@ export const ConfirmationPage = () => {
         const data = await fetchOrder(orderNr);
         const order = data.order;
         setOrder(order ? order : null);
+        console.log("Order", order);
+        
       }
     };
 
     handleFetchOrder();
-  }, [orderNr, fetchOrder]);
+  }, []);
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null;
@@ -53,6 +56,8 @@ export const ConfirmationPage = () => {
 
   const calculateRemainingMinutes = () => {
     const currentTime = new Date();
+    // console.log("Current Time", currentTime);
+    
     return Math.max(0, differenceInMinutes(parse(order?.deliveryTime || '', 'yyyy-MM-dd HH:mm:ss', new Date()), currentTime));
   };
 
@@ -69,7 +74,10 @@ export const ConfirmationPage = () => {
               <p className='order-id'>#{order.orderNr}</p>
             </section>
         }
-        <section className="button__container"></section>
+        <section className="button__container">
+          <PrimaryButton className='black-bg' title='Beställ mer'/>
+          <PrimaryButton className='no-bg' title='Se kvitto'/>
+        </section>
       </main>
     </section>
   );
