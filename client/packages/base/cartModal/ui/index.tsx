@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 import { AppContext } from '@zocom/app-context'
 import { CartItem } from '@zocom/cart-item'
 import { PrimaryButton } from '@zocom/primary-button'
@@ -11,6 +12,7 @@ export const CartModal = () => {
     const [cartQty, setCartQty] = useState<number>(0)
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [cartModalOpen, setCartModalOpen] = useState<boolean>(false);
+    const navigate = useNavigate()
 
     //Close modal when pressing Esc on desktop
     useEffect(() => {
@@ -70,11 +72,10 @@ export const CartModal = () => {
             });
         
         const data = await response.json()
-        console.log(data);
+        console.log("Data",data.orderNr);
         
         setCart([])
-        //Route to confirmation page /order/${data.orderNr}
-        
+        navigate(`/order/${data.orderNr}`)
     }
 
     return (
