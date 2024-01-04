@@ -9,8 +9,6 @@ import './style.scss';
 export const ConfirmationPage = () => {
   const [eta, setEta] = useState<number>(5); 
   
-
-
   return (
     <section className='confirmation-page'>
       <Header />
