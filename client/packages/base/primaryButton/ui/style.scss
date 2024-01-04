@@ -12,6 +12,10 @@
     border-radius: $radius-tier-2;
 }
 
+.primary__button:disabled {
+    opacity: 55%;
+}
+
 .black-bg {
     background-color: $coal;
 }
