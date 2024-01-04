@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 export const calculateDeliveryTime = (orderItems) => {
   // Define delivery time parameters
   const preparationTimePerMeal = 5; // in minutes
@@ -19,11 +17,5 @@ export const calculateDeliveryTime = (orderItems) => {
       averageDeliveryTime * 60 * 1000
   );
 
-  // Format the delivery time using date-fns so that it matches timeStamp format
-  const formattedDeliveryTime = format(
-    estimatedDeliveryTime,
-    "yyyy-MM-dd HH:mm:ss"
-  );
-
-  return formattedDeliveryTime;
+  return estimatedDeliveryTime.toISOString();
 };
