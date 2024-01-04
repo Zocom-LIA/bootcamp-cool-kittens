@@ -5,6 +5,8 @@ import {
   
 import { LandingPage } from "@zocom/landing-page";
 import { ConfirmationPage } from "@zocom/confirmation-page";
+import { KitchenPage } from "@zocom/kitchen-page";
+
 
 const router = createBrowserRouter([
   {
@@ -13,11 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/kitchen',
-    // element: <KitchenPage />
+    element: <KitchenPage />
   },
   {
     path: '/order/:orderNr',
-     element: <ConfirmationPage />
+    element: <ConfirmationPage />
   },
   {
     path: '*',
