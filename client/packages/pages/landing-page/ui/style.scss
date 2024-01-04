@@ -9,8 +9,7 @@
     padding: 0 $padding;
 
     .menu-wrap {
-        width: 100%;
-        max-width: 400px;
+        @include mobile-width-default;
 
         .menu-title {
             background-color: $clay;
