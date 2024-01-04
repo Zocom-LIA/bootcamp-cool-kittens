@@ -9,24 +9,21 @@
     padding: 0 $padding;
 
     .menu-wrap {
-        width: 100%;
-        max-width: 400px;
+        @include mobile-width-default;
+        background-color: $clay;
+        border-radius: $radius-tier-2;
 
         .menu-title {
-            background-color: $clay;
             @include fontsizeLarge;
             font-weight: 600;
             text-transform: uppercase;
             color: $snow;
-            padding: $padding-large $padding 0;
-            border-radius: $radius-tier-2 $radius-tier-2 0 0;
+            padding: $padding;
         }
     
         .dip-option__card {
-            background-color: $clay;
             color: $snow;
             padding: $padding;
-            border-radius: 0 0 $radius-tier-2 $radius-tier-2;
     
             .title {
                 @include fontsizeMedium;

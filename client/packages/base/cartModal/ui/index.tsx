@@ -104,7 +104,7 @@ export const CartModal = () => {
                       height: 0,
                       transition: {
                         ease: "easeInOut",
-                        duration: 0.5,
+                        duration: 0.6,
                       },
                     }}>
                         {
@@ -116,18 +116,20 @@ export const CartModal = () => {
                         </section>)
                         :(<section className='cart-empty__notif'>Your cart is empty</section>)
                         }
-                        <article className='price-summary__card'>
-                            <section>
-                                <h3 className='title'>Totalt</h3>
-                                <p className='tax'>inkl 20% moms</p>
-                            </section>
-                            <h3 className='price-total'>{totalPrice} Sek</h3>
-                        </article>
-                        <PrimaryButton 
-                        title="Take my money!" 
-                        className="black-bg"
-                        disabled={cart.length < 1} 
-                        action={handleSendOrder}/>  
+                        <section className='summary-wrap'>
+                            <article className='price-summary__card'>
+                                <section>
+                                    <h3 className='title'>Totalt</h3>
+                                    <p className='tax'>inkl 20% moms</p>
+                                </section>
+                                <h3 className='price-total'>{totalPrice} Sek</h3>
+                            </article>
+                            <PrimaryButton 
+                            title="Take my money!" 
+                            className="black-bg"
+                            disabled={cart.length < 1} 
+                            action={handleSendOrder}/>  
+                        </section>
                     </motion.main>
                 )}
             </AnimatePresence>

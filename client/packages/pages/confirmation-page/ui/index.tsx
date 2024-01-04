@@ -54,7 +54,7 @@ export const ConfirmationPage = () => {
     <section className="confirmation-page">
       <Header />
       <main className="confirmation-wrap">
-        <img src="./public/assets/boxtop 1.png" alt="" />
+        <img src="/public/assets/boxtop 1.png" alt="" />
         {
           order && remainingMinutes <= 0 ? (
             <>

@@ -1,8 +1,7 @@
 @use '@zocom/styles' as *;
 
 .page-header {
-    width: 100%;
-    max-width: 400px;
+    @include mobile-width-default;
     display: flex;
     justify-content: space-between;
     padding: $padding 0;
