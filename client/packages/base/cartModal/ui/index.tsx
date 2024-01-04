@@ -103,7 +103,7 @@ export const CartModal = () => {
                       height: 0,
                       transition: {
                         ease: "easeInOut",
-                        duration: 0.5,
+                        duration: 0.6,
                       },
                     }}>
                         {
