@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/kitchen-page",
+    "main": "./index.ts"
+}

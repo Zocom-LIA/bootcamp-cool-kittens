@@ -4,18 +4,25 @@ import {
   } from "react-router-dom";
   
 import { LandingPage } from "@zocom/landing-page";
+import { ConfirmationPage } from "@zocom/confirmation-page";
+import { KitchenPage } from "@zocom/kitchen-page";
+
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <LandingPage />,
   },
   {
-    path: "/kitchen",
-    // element: <KitchenPage />
+    path: '/kitchen',
+    element: <KitchenPage />
   },
   {
-    path: "*",
+    path: '/order/:orderNr',
+    element: <ConfirmationPage />
+  },
+  {
+    path: '*',
     element: <p>Page Not Found</p>,
   },
 ]);

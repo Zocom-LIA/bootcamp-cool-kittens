@@ -1,14 +1,14 @@
 @use '@zocom/styles' as *;
 
 .menu-item__card {
-    background-color: $clay;
     color: $snow;
     padding: $padding;
     border-bottom: 1px dotted $shade24Light;
     cursor: pointer;
 
     .title {
-        @include fontsizeLarge;
+        @include fontsizeMedium;
+        font-weight: 600;
         text-transform: uppercase;
         @include grid-row;
         align-items: flex-end;
@@ -19,7 +19,17 @@
     }
 
     .ingredients {
+        @include fontsizeSmall;
         padding-top: $padding-sml;
         padding-bottom: $padding-sml;
+        @include row;
     }
+}
+
+.menu-item__card:hover {
+    background-color: $shade12Light;
+}
+
+.red {
+    background-color: red;
 }

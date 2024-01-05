@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CartModal } from '@zocom/cart-modal'
+import { Header } from '@zocom/page-header'
 import { MenuItem } from '@zocom/menu-item'
 import { DipOption } from '@zocom/dip-option'
 import { menuData } from '..';
@@ -39,11 +39,9 @@ export const LandingPage = () => {
 
     return (
         <div className='landing-page'>
-            <header>
-                <CartModal />
-            </header>
-            <main>                    
-                <h2>Meny</h2>
+            <Header/>
+            <main className='menu-wrap'>                    
+                <h2 className='menu-title'>Meny</h2>
                 <section>
                     {
                         wontonMenu && wontonMenu.map((wonton)=> (
@@ -51,17 +49,19 @@ export const LandingPage = () => {
                         )) 
                     }
                 </section>
-                <section>
-                    <section>
+                <section className='dip-option__card'>
+                    <section className='title'>
                         <h3>Dipsås</h3>
-                        {/* <hr/> */}
+                        <hr className='dotted-line'/>
                         <h3>19 sek</h3>
                     </section>
+                    <section className='dip-options'>
                     {
                         dipMenu && dipMenu.map((dip)=> (
                             <DipOption key={dip.id} dip={dip}/>
                         ))  
                     }
+                    </section>
                 </section>
             </main>
         </div>

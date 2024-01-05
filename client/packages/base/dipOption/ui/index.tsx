@@ -1,5 +1,7 @@
 import { useEffect, useContext } from "react";
-import AppContext from "../../../core/context/AppContext"
+import { motion } from "framer-motion";
+import { AppContext } from "@zocom/app-context";
+import './style.scss';
 
 type MenuItem = {
   id: string, 
@@ -36,22 +38,19 @@ export const DipOption = ({dip}: DipItemProps) => {
   }
 
   //Only to see how the cart looks like in the console.
-  useEffect(() => {
-    console.log("CART", cart);
+//   useEffect(() => {
+//     console.log("CART", cart);
     
-}, [cart]);
+// }, [cart]);
 
     return (
-        <button
+      <motion.button
+      whileHover={{backgroundColor: "#353131"}}
+      whileTap={{scale: 0.95}}
+      className='dip-option__button'
       onClick={handleAddToCart}
-      style={{
-        border: cart ? "2px solid green" : "none",
-        cursor: "pointer",
-      }}
-    >
-      {dip.title}
-     
-    {cart && <p> Added to cart </p>}
-    </button>
+      >
+        {dip.title}
+      </motion.button>
     )
 }

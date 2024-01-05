@@ -84,6 +84,11 @@ $tabletBreakpoint: 640px;
   gap: $gap-sml;
 }
 
+@mixin column-no-center {
+  display: flex;
+  flex-direction: column;
+}
+
 @mixin row {
   display: flex;
   flex-direction: row;
@@ -92,7 +97,7 @@ $tabletBreakpoint: 640px;
 
 @mixin grid-row {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   grid-auto-rows: minmax(30px, auto);
   gap: $gap;
 }
@@ -100,7 +105,18 @@ $tabletBreakpoint: 640px;
 @mixin dotted-line {
   align-self: flex-end;
   justify-self: flex-end;
-  border-top: dotted;
+  border-top: 2px dotted;
   height: 1px;
   background-color: $clay;
+}
+
+@mixin small-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+@mixin mobile-width-default {
+  width: 100%;
+  max-width: 400px;
 }

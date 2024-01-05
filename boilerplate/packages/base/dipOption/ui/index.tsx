@@ -37,10 +37,7 @@ export const DipOption = ({dip}: DipItemProps) => {
   }
 
   //Only to see how the cart looks like in the console.
-  useEffect(() => {
-    console.log("CART", cart);
-    
-}, [cart]);
+
 
     return (
     <button

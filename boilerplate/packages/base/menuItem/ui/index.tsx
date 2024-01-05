@@ -38,10 +38,10 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
     };
 
     //Only to see how the cart looks like in the console.
-    useEffect(() => {
-      console.log("CART", cart);
+  //   useEffect(() => {
+  //     console.log("CART", cart);
       
-  }, [cart]);
+  // }, [cart]);
 
   //The ingredients are transformed to a single string separated by commas. 
   const joinedIngredients = wonton.ingredients? wonton.ingredients.join(', '): null;

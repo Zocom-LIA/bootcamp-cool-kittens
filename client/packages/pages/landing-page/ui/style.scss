@@ -1,17 +1,49 @@
 @use '@zocom/styles' as *;
 
 .landing-page {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    background-image: url('./assets/leaf.png');
     background-color: $mint;
     @include column;
-    padding: $padding-large;
+    padding: 0 $padding;
 
-    .quote {
-        margin: auto;
-        max-width: 60vw;
-        width: 100%;
-        text-align: center;
-        @include fontsizeLarge;
+    .menu-wrap {
+        @include mobile-width-default;
+        background-color: $clay;
+        border-radius: $radius-tier-2;
+
+        .menu-title {
+            @include fontsizeLarge;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: $snow;
+            padding: $padding;
+        }
+    
+        .dip-option__card {
+            color: $snow;
+            padding: $padding;
+    
+            .title {
+                @include fontsizeMedium;
+                font-weight: 600;
+                text-transform: uppercase;
+                @include grid-row;
+                align-items: flex-end;
+                padding-bottom: $padding-large;
+    
+                .dotted-line {
+                    @include dotted-line;
+                }
+            }
+        }
+    
+        .dip-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: minmax(30px, auto);
+            gap: $gap;
+        }
     }
 }

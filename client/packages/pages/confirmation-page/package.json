@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/confirmation-page",
+    "main": "./index.ts"
+  }
