@@ -85,7 +85,11 @@ export const CartModal = () => {
                 {
                     !cartModalOpen && (
                         cartQty > 0 && (
-                            <span className='cart__qty'>{cartQty}</span>
+                            <motion.span 
+                            initial={{ scale: 1 }}
+                            animate={{ scale: 1.1 }}
+                            className='cart__qty'
+                            >{cartQty}</motion.span>
                         )
                     )
                 }
