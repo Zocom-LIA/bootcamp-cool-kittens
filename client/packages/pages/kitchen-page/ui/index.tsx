@@ -89,7 +89,7 @@ export const KitchenPage = () => {
                   <>
                     <h2>{order.orderNr}</h2>
                     <KitchenOrderItem orderItems={order.orderItems} />
-                    <PrimaryButton title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} className={orderStatus === "preparing" ? "red-bg" : "green-bg"} action={() =>updateOrderStatus(order.orderNr)}/>
+                    <PrimaryButton title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} className={orderStatus === "preparing" ? "red-bg" : "green-bg"} action={() =>updateOrderStatus(order.orderNr)} disabled={orderStatus === "ready"}/>
                   </>
                 ))
               }
