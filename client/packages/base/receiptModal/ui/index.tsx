@@ -1,4 +1,3 @@
-import { Header } from '@zocom/page-header';
 import { ReceiptItem } from '@zocom/receipt-item';
 import './style.scss';
 
@@ -18,30 +17,30 @@ type OrderItem = {
 export const ReceiptModal = ({orderNr, orderItems, totalPrice}: ReceiptModalProps) => {
 
     return (
-            <main>
-                <article>
-                    <section>
-                        <img src='/assets/company-logo.svg' alt="" />
-                        <h2>Kvitto</h2>
-                        <p>{orderNr}</p>
-                    </section>
-                    {
-                        orderItems && orderItems.map((orderItem)=> (
-                            <ReceiptItem 
-                            key={orderItem.id} 
-                            title={orderItem.title} 
-                            quantity={orderItem.quantity} 
-                            price={orderItem.price} />
-                        ))
-                    }
-                    <article>
-                        <section>
-                            <h3>Totalt</h3>
-                            <p>inkl 20% moms</p>
-                        </section>
-                        <h3>{totalPrice} Sek</h3>
-                    </article> 
-                </article>
-            </main>
+        <main className='receipt__card'>
+            <section className='receipt-title__wrap'>
+                <img className='receipt-logo' src='/assets/company-logo.svg' alt="" />
+                <h2 className='title'>Kvitto</h2>
+                <p className='order-id'>#{orderNr}</p>
+            </section>
+            <section className='receipt-item__container'>
+            {
+                orderItems && orderItems.map((orderItem)=> (
+                    <ReceiptItem 
+                    key={orderItem.id} 
+                    title={orderItem.title} 
+                    quantity={orderItem.quantity} 
+                    price={orderItem.price} />
+                ))
+            }
+            </section>
+            <article className='price-summary__card'>
+                <section>
+                    <h3 className='title'>Totalt</h3>
+                    <p className='tax'>inkl 20% moms</p>
+                </section>
+                <h3 className='price-total'>{totalPrice} Sek</h3>
+            </article> 
+        </main>
     )
 }

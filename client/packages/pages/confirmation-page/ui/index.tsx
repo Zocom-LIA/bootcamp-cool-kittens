@@ -59,8 +59,10 @@ export const ConfirmationPage = () => {
     setReceiptModalOpen(!receiptModalOpen);
   };
 
+  const backgroundColor = !receiptModalOpen && remainingMinutes <= 0 ? "green-bg" : "default-bg";
+
   return (
-    <section className="confirmation-page">
+    <section className={`confirmation-page ${backgroundColor}`}>
     <Header />
     { order && receiptModalOpen ? (
       <ReceiptModal orderNr={order.orderNr} orderItems={order.orderItems} totalPrice={order.totalPrice} />
