@@ -60,12 +60,11 @@ export const ConfirmationPage = () => {
   };
 
   return (
-    <>
+    <section className="confirmation-page">
+    <Header />
     { order && receiptModalOpen ? (
       <ReceiptModal orderNr={order.orderNr} orderItems={order.orderItems} totalPrice={order.totalPrice} />
       ):(
-      <section className="confirmation-page">
-        <Header />
         <main className="confirmation-wrap">
           <img src="/assets/boxtop 1.png" alt="" />
           {
@@ -86,13 +85,12 @@ export const ConfirmationPage = () => {
               </>
             )
           }
-          <section className="button__container">
-            <PrimaryButton className='black-bg' title='Beställ mer' action={handleOrderMore}/>
-            <PrimaryButton className='no-bg' title='Se kvitto' action={handleOnClick}/>
-          </section>
         </main>
-      </section>
       )}
-    </>
+          <section className="button__container">
+            <PrimaryButton className='black-bg' title={ receiptModalOpen ? 'Gör en ny beställning' : 'Beställ mer' } action={handleOrderMore}/>
+            <PrimaryButton className='no-bg' title={ receiptModalOpen ? 'Se orderstatus' : 'Se kvitto' } action={handleOnClick}/>
+          </section>
+    </section>
   );
 };

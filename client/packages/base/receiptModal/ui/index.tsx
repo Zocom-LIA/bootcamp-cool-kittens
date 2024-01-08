@@ -1,8 +1,6 @@
 import { Header } from '@zocom/page-header';
 import { ReceiptItem } from '@zocom/receipt-item';
 import './style.scss';
-import { PrimaryButton } from '@zocom/primary-button';
-import { useNavigate } from 'react-router-dom';
 
 type ReceiptModalProps = {
     orderNr: string;
@@ -19,14 +17,7 @@ type OrderItem = {
 
 export const ReceiptModal = ({orderNr, orderItems, totalPrice}: ReceiptModalProps) => {
 
-    const handleOrderMore = () => {
-        const navigate = useNavigate();
-        navigate('/')
-    }
-
     return (
-        <section>
-            <Header/>
             <main>
                 <article>
                     <section>
@@ -50,9 +41,7 @@ export const ReceiptModal = ({orderNr, orderItems, totalPrice}: ReceiptModalProp
                         </section>
                         <h3>{totalPrice} Sek</h3>
                     </article> 
-                    <PrimaryButton title="Gör en ny beställning" className='black-bg' action={handleOrderMore} />
                 </article>
             </main>
-        </section>
     )
 }

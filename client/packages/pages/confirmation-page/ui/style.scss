@@ -35,9 +35,11 @@
             padding: $padding;
         }
 
-        .button__container {
-            margin-top: auto;
-        }
+    }
+
+    .button__container {
+        @include mobile-width-default;
+        margin-top: auto;
     }
 }
 
