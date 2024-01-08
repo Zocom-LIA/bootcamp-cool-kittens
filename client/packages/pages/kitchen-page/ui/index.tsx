@@ -1,54 +1,103 @@
-// KitchenPage.jsx
-
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./style.scss";
 import { KitchenOrderItem } from "@zocom/kitchen-item";
-import { fetchOrdersFromApi } from "../data"; // Adjust the path based on your project structure
+import { filteredOrderData } from ".."
+import { Header } from "@zocom/page-header";
+import { PrimaryButton } from "@zocom/primary-button";
 
-type OrderItem = {
-  id: string;
-  title: string;
-  quantity: number;
-  price: number;
-};
+type Order = {
+  orderNr: number;
+  orderItems: [];
+  orderStatus: string;
+  timeStamp: string;
+  deliveryTime: string;
+  totalPrice: number;
+}
 
 export const KitchenPage = () => {
-  // State to manage order items
-  const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    // Fetch orders when the component mounts
-    const fetchData = async () => {
-      try {
-        const data = await fetchOrdersFromApi();
-        setOrderItems(data);
-      } catch (error) {
-        // Handle error as needed
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  // const {fetchFilteredOrders} = filteredOrderData();
 
-    fetchData();
-  }, []);
+  const statusList = ["preparing", "ready"]
+
+  const [ordersByStatus, setOrdersByStatus] = useState<{
+    [orderStatus: string]: Order[];
+  }>({});
+
+  const today = new Date();
+  const todaysDate = today.toISOString().split("T")[0] + " 00:00:00";
+
+  const fetchFilteredOrders = async (orderStatus: string) => {
+    try {
+      const URL = `https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/filterOrders/${orderStatus}?timeStamp=${todaysDate}`;
+      const response = await fetch(URL)
+      const data = await response.json()
+      console.log(data);
+      
+
+      setOrdersByStatus((prevOrders) => ({
+        ...prevOrders,
+        [orderStatus]: data.filteredOrders
+      }))
+
+      console.log(ordersByStatus);
+      
+      
+    } catch (error) {
+      console.error(error, `Failed to fetch ${orderStatus} orders`);
+    }
+  }
+
+  useEffect(()=> {
+    statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus))
+  }, [])
 
   return (
-    <div className="kitchen-page">
-      <h1>Kitchen Page</h1>
-      <p>Welcome to the kitchen! This is where the magic happens.</p>
+    <section className="kitchen-page">
+      <Header/>
 
-      <section className="order-list">
-        {isLoading ? (
-          <p>Loading orders...</p>
-        ) : (
-          // Map through the fetched orders and render KitchenOrderItem for each
-          orderItems.map((item) => (
-            <KitchenOrderItem key={item.id} orderItem={item} />
+      <main className="kitchen-wrap">
+
+        {
+          statusList.map((orderStatus) => (
+            <aside>
+              {
+                ordersByStatus[orderStatus] && ordersByStatus[orderStatus].map((order) => (
+                  <>
+                    <h2>{order.orderNr}</h2>
+                    <KitchenOrderItem orderItems={order.orderItems} />
+                    <PrimaryButton title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} className={orderStatus === "preparing" ? "red-bg" : "green-bg"}/>
+                  </>
+                ))
+              }
+            </aside>
           ))
-        )}
-      </section>
-    </div>
+        }
+      </main>
+    </section>
+    // <div className="kitchen-page">
+    //   <h1>Kitchen Page</h1>
+    //   <p>Welcome to the kitchen! This is where the magic happens.</p>
+
+    //   <section className="order-list">
+    //     {isLoading ? (
+    //       <p>Loading orders...</p>
+    //     ) : (
+    //       // Map through the fetched orders and render KitchenOrderItem for each
+    //       orderItems.map((item) => (
+    //         <KitchenOrderItem key={item.id} orderItem={item} />
+    //       ))
+    //     )}
+    //   </section>
+
+    //   <section>
+    //     {
+    //       ordersByStatus["preparing"].map((order) => (
+    //         <p>{order.orderNr}</p>
+    //       ))
+    //     }
+    //   </section>
+    // </div>
   );
 };
 

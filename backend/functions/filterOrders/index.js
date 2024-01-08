@@ -4,9 +4,7 @@ import { sendResponse } from "../../responses";
 
 exports.handler = async (event) => {
   const orderStatus = event.pathParameters.status;
-  console.log(orderStatus);
   const orderStatusValue = orderStatus;
-  console.log(orderStatusValue);
 
   const timeStampValue = event.queryStringParameters
     ? event.queryStringParameters.timeStamp
