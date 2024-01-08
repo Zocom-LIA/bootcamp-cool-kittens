@@ -40,6 +40,12 @@ functions:
         - httpApi:
             path: '/api/order/{orderNr}'
             method: GET
+    filterOrders:
+      handler: functions/filterOrders/index.handler
+      events: 
+        - httpApi:
+            path: '/api/filterOrders/{status}'
+            method: GET
 
 resources:
   Resources:

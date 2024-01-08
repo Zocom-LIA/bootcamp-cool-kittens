@@ -20,7 +20,7 @@ exports.handler = async (event) => {
         timeStamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"), //Direkt här eller i separat funktion?
         totalPrice: calculateTotalPrice(orderItems),
         orderItems: orderItems,
-        status: orderStatus,
+        orderStatus: orderStatus,
         deliveryTime: calculateDeliveryTime(orderItems),
       },
     });
