@@ -1,0 +1,34 @@
+// style.scss
+
+.kitchen-order__item {
+    margin: 10px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      h3 {
+        margin: 0;
+        color: #333;
+      }
+  
+      .dotted-line {
+        border: none;
+        border-top: 1px dotted #ccc;
+        margin: 8px 0;
+        flex-grow: 1;
+      }
+    }
+  
+    h3 {
+      margin: 5px 0;
+      color: #555;
+    }
+  }
+  
