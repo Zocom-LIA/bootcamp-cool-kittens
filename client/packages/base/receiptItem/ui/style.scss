@@ -1,1 +1,23 @@
 @use '@zocom/styles' as *;
+
+.receipt-item__card {
+    color: $coal;
+    cursor: pointer;
+
+    .title {
+        @include fontsizeRegular;
+        font-weight: 700;
+        text-transform: uppercase;
+        @include grid-row;
+        align-items: flex-end;
+
+        .dotted-line {
+            @include dotted-line;
+            background-color: $ash;
+        }
+    }
+
+    .quantity {
+        @include fontsizeSmall;
+    }
+}

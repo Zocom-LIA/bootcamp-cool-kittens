@@ -68,18 +68,18 @@
     
             .title {
                 @include fontsizeMedium;
-                font-weight: 600;
+                font-weight: 700;
                 text-transform: uppercase;
             }
     
             .tax {
                 @include fontsizeSmall;
-                font-weight: 600;
+                font-weight: 500;
             }
     
             .price-total {
                 @include fontsizeLarge;
-                font-weight: 600;
+                font-weight: 700;
                 text-transform: uppercase;
             }
         }

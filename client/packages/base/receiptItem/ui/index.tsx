@@ -17,7 +17,7 @@ export const ReceiptItem = ({title, price, quantity}: ReceiptItemProps) => {
             <section className='title'>
                 <h3>{title}</h3>
                 <hr className='dotted-line'/>
-                <h3>{calculateTotalPrice()}</h3>
+                <h3>{calculateTotalPrice()} Sek</h3>
             </section>
             <p className='quantity'>{quantity} stycken</p>
         </article>
