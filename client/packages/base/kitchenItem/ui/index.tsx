@@ -18,8 +18,8 @@ export const KitchenOrderItem = ({orderItems}: OrderItemsProps) => {
             <section key={index} className='title'>
               <h3>{item.title}</h3>
               <hr className='dotted-line'/>
-              <h3>Quantity: {item.quantity}</h3>
-              <h3>Total: {item.price * item.quantity} sek</h3>
+              <h3>{item.quantity} st</h3>
+              <h3>{item.price * item.quantity} sek</h3>
             </section>
           ))
         }
