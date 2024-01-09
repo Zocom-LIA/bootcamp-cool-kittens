@@ -1,32 +1,24 @@
 import {useState, useEffect, useContext} from 'react'
 import { AppContext } from '@zocom/app-context'
 import {QtyButton} from '@zocom/qty-button'
+import { CartItemProps } from '@zocom/app-context'
 import './style.scss';
 
-type CartItemProps = {
-    id: string
-    title: string
-    price: number
-    quantity: number
-}
-
-export const CartItem = ({id, title, price, quantity} : CartItemProps) => {  
+export const CartItem = ({id, title, price, quantity} : CartItemProps) => { 
     const [totalPrice, setTotalPrice] = useState<number>(0)
-    const [itemQuantity, setItemQuantity] = useState(quantity)
+    const [itemQuantity, setItemQuantity] = useState<number>(quantity)
     const {cart, setCart} = useContext(AppContext)
 
-    const calcTotalPrice = (price:number, quantity:number) => {
+    const calcTotalPrice = (price: number, quantity: number) => {
         setTotalPrice(price * quantity)
     }
 
-    //Update totalprice when the item quantity changes
     useEffect(()=> {
         calcTotalPrice(price, itemQuantity)
     }, [itemQuantity])
 
-    const incrementQty = (quantity:number) => {
+    const incrementQty = (quantity: number) => {
         const updatedQuantity = quantity += 1
-        
         setItemQuantity(updatedQuantity)
         setCart(
             cart.map((cartItem) =>
@@ -37,7 +29,7 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
         );
     }
 
-    const decrementQty = (quantity:number) => {
+    const decrementQty = (quantity: number) => {
         const updatedQuantity = quantity -= 1
         
         if (updatedQuantity === 0) {

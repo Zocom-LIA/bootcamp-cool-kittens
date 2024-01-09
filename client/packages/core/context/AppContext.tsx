@@ -1,6 +1,6 @@
 import {createContext, Dispatch, SetStateAction } from "react"
 
-type CartItemProps = {
+export type CartItemProps = {
     id: string, 
     title: string, 
     price: number,
@@ -8,7 +8,7 @@ type CartItemProps = {
     quantity: number
 }
 
-type AppContextType = {
+export type AppContextType = {
     cart: CartItemProps[]
     setCart: Dispatch<SetStateAction<CartItemProps[]>>;
     orderStatus: string;

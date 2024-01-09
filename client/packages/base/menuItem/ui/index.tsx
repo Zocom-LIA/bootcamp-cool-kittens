@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { AppContext } from "@zocom/app-context";
 import './style.scss';
 
@@ -23,7 +23,6 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
       const itemInCart = cart.find((cartItem) => cartItem.id === wonton.id);
     
       if (itemInCart) {
-        // Item is already in cart, update its quantity
         setCart(
           cart.map((cartItem) =>
             cartItem.id === wonton.id
@@ -32,16 +31,9 @@ export const MenuItem = ({wonton} : WontonItemProps) => {
           )
         );
       } else {
-        // Item is not in the cart, add it with quantity 1
         setCart([...cart, { ...wonton, quantity: 1 }]);
       }
     };
-
-    //Only to see how the cart looks like in the console.
-  //   useEffect(() => {
-  //     console.log("CART", cart);
-      
-  // }, [cart]);
 
   //The ingredients are transformed to a single string separated by commas. 
   const joinedIngredients = wonton.ingredients? wonton.ingredients.join(', '): null;
