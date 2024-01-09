@@ -1,8 +1,15 @@
 import { GetCommand } from "@aws-sdk/lib-dynamodb";
 import { docClient } from "../../services/client";
 import { sendResponse } from "../../responses";
+import middy from "@middy/core";
+import { validateToken } from "../../middleware/auth";
 
 exports.handler = async (event) => {
+
+
+  if (event?.error && event?.error === '401')
+  return sendResponse(401, {success: false , message: 'Invalid token' });
+
   const { orderNr } = event.pathParameters;
 
   try {
@@ -36,3 +43,9 @@ exports.handler = async (event) => {
     });
   }
 };
+
+const validatedHandler = middy(handler).use(validateToken);
+
+export { validatedHandler as handler };
+
+

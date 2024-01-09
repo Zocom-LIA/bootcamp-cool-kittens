@@ -6,8 +6,14 @@ import { generateTimestamp } from "./generateTimeStamp";
 import { calculateTotalPrice } from "./calculateTotalPrice";
 import { calculateDeliveryTime } from "./calculateDeliveryTime";
 import { format } from "date-fns";
+import middy from "@middy/core";
+import { validateToken } from "../../middleware/auth";
 
 exports.handler = async (event) => {
+
+  if (event?.error && event?.error === '401')
+  return sendResponse(401, {success: false , message: 'Invalid token' });
+
   const orderItems = JSON.parse(event.body);
   const orderNr = generateOrderNumber();
   const orderStatus = event.headers["x-order-status"] || undefined;
@@ -41,3 +47,7 @@ exports.handler = async (event) => {
     });
   }
 };
+
+const validatedHandler = middy(handler).use(validateToken);
+
+export { validatedHandler as handler };

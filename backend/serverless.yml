@@ -52,6 +52,19 @@ functions:
         - httpApi: 
             path: "/api/updateOrderStatus"
             method: POST
+    signUp:
+      handler: functions/signUp/index.handler
+      events:
+        - httpApi:
+            path: '/auth/signup'
+            method: POST
+    login:
+      handler: functions/login/index.handler
+      events:
+        - httpApi:
+            path: '/auth/login'
+            method: POST
+            
 
 resources:
   Resources:
@@ -103,6 +116,26 @@ resources:
                 KeyType: RANGE  
             Projection:
               ProjectionType: ALL
+    usersDb:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: accounts
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+          KeySchema:
+          - AttributeName: username 
+            KeyType: HASH
+          BillingMode: PAY_PER_REQUEST
+          
+        
+
+          
+            
+          
+        
+              
+              
               
 
 #   getMenu:
