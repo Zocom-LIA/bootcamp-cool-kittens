@@ -1,20 +1,9 @@
+@use '@zocom/styles' as *;
 
 .kitchen-page {
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  
-    h1 {
-      color: #333;
-    }
-  
-    p {
-      color: #666;
-    }
-  
-    .order-list {
-      margin-top: 20px;
-    }
-  }
+  height: 100vh;
+  width: 100%;
+  background-color: $coal;
+
+}
   

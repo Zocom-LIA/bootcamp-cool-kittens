@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { motion } from "framer-motion";
 import { AppContext } from "@zocom/app-context";
 import './style.scss';

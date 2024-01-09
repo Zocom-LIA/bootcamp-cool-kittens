@@ -29,6 +29,10 @@
     background-color: $darkMint;
 }
 
+.green-bg:disabled {
+    opacity: 100%;
+}
+
 .red-bg {
     background-color: $alert;
 }
