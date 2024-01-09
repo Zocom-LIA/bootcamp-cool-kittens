@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import "./style.scss";
-import { KitchenOrderItem } from "@zocom/kitchen-item";
 // import { filteredOrderData } from ".."
 import { Header } from "@zocom/page-header";
-import { PrimaryButton } from "@zocom/primary-button";
+import { KitchenStatusColumn } from "@zocom/kitchen-status-column";
 
 type Order = {
   orderNr: string;
@@ -40,7 +39,7 @@ export const KitchenPage = () => {
         [orderStatus]: data.filteredOrders
       }))
 
-      console.log(ordersByStatus);
+      // console.log(ordersByStatus);
       
       
     } catch (error) {
@@ -51,6 +50,9 @@ export const KitchenPage = () => {
   useEffect(()=> {
     statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus))
   }, [])
+
+  console.log(ordersByStatus);
+  
 
   const updateOrderStatus = async (orderNr: string) => {
     const API_URL = "https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/updateOrderStatus"
@@ -79,21 +81,13 @@ export const KitchenPage = () => {
   return (
     <section className="kitchen-page">
       <Header/>
-
       <main className="kitchen-wrap">
         {
           statusList.map((orderStatus) => (
-            <aside>
-              {
-                ordersByStatus[orderStatus] && ordersByStatus[orderStatus].map((order) => (
-                  <>
-                    <h2>{order.orderNr}</h2>
-                    <KitchenOrderItem orderItems={order.orderItems} />
-                    <PrimaryButton title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} className={orderStatus === "preparing" ? "red-bg" : "green-bg"} action={() =>updateOrderStatus(order.orderNr)} disabled={orderStatus === "ready"}/>
-                  </>
-                ))
-              }
-            </aside>
+            <KitchenStatusColumn 
+            orders={ordersByStatus[orderStatus]}
+            name={orderStatus}
+            />
           ))
         }
       </main>

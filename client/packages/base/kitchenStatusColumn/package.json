@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/kitchen-status-column",
+    "main": "./index.ts"
+}

@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/kitchen-order-card",
+    "main": "./index.ts"
+}
