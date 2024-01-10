@@ -27,8 +27,6 @@ export const KitchenPage = () => {
         ...prevOrders,
         [orderStatus]: data.filteredOrders
       }))
-
-      // console.log(ordersByStatus);
       
     } catch (error) {
       console.error(error, `Failed to fetch ${orderStatus} orders`);
@@ -49,7 +47,7 @@ export const KitchenPage = () => {
           statusList.map((orderStatus) => (
             <KitchenStatusColumn 
             orders={ordersByStatus[orderStatus]}
-            name={orderStatus}
+            title={orderStatus}
             />
           ))
         }

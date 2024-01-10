@@ -11,23 +11,17 @@ type Order = {
 }
 
 type StatusColumnProps = {
-    name: string;
+    title: string;
     orders: Order[];
 }
 
-export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {    
+export const KitchenStatusColumn = ({orders, title}: StatusColumnProps) => {    
     return (
        <section>
-            <p>{name}</p>
+            <p>{title}</p>
             {orders && orders.map((order) => (
                 <KitchenOrderCard 
-                orderNr={order.orderNr}
-                orderItems={order.orderItems}
-                totalPrice={order.totalPrice}
-                orderStatus={order.orderStatus}
-                timeStamp={order.timeStamp}
-                deliveryTime={order.deliveryTime}
-                // key={order.orderNr} {...order}
+                key={order.orderNr} {...order}
                 />
             ))}
        </section>
