@@ -1,10 +1,16 @@
 @use '@zocom/styles' as *;
 
 .kitchen-page {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: $coal;
   padding: 0 $padding-large;
+
+  .kitchen-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 
 }
   
