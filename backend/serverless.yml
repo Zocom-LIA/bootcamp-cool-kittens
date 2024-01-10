@@ -1,6 +1,8 @@
 service: yygs
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs18.x
@@ -18,9 +20,12 @@ provider:
 
 plugins: 
   - serverless-webpack
+  - serverless-dotenv-plugin
 
 package: 
   individually: true
+  exclude:
+    - .env.*
 
 functions:
     getMenu:
