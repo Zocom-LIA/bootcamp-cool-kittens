@@ -21,6 +21,7 @@ type Order = {
 type StatusColumnProps = {
     name: string;
     orders: Order[];
+    buttonAction: () => void;
 }
 
 export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {
@@ -30,7 +31,7 @@ export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {
     return (
        <section>
             <p>{name}</p>
-            {orders.map((order) => (
+            {orders && orders.map((order) => (
                 <KitchenOrderCard 
                 orderNr={order.orderNr}
                 orderItems={order.orderItems}
@@ -39,7 +40,7 @@ export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {
                 timeStamp={order.timeStamp}
                 deliveryTime={order.deliveryTime}
                 // key={order.orderNr} {...order}
-                // buttonAction={() => updateOrderStatus(order.orderNr)}
+                // buttonAction={buttonAction}
                 />
             ))}
        </section>

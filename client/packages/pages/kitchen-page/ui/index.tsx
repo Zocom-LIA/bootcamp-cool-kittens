@@ -87,6 +87,7 @@ export const KitchenPage = () => {
             <KitchenStatusColumn 
             orders={ordersByStatus[orderStatus]}
             name={orderStatus}
+            buttonAction={() => updateOrderStatus(ordersByStatus[orderStatus].orderNr)}
             />
           ))
         }
