@@ -18,7 +18,10 @@ type StatusColumnProps = {
 export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {    
     return (
        <section>
-            <p>{name}</p>
+        <section className='column-title__wrap'>
+            <h2 className='title'>{name}</h2>
+            <hr className='straight-line' />
+        </section>
             {orders && orders.map((order) => (
                 <KitchenOrderCard 
                 orderNr={order.orderNr}
