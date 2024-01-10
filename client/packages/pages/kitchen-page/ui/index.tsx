@@ -47,7 +47,7 @@ export const KitchenPage = () => {
           statusList.map((orderStatus) => (
             <KitchenStatusColumn 
             orders={ordersByStatus[orderStatus]}
-            title={orderStatus}
+            status={orderStatus}
             />
           ))
         }
