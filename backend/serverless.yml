@@ -1,8 +1,6 @@
 service: yygs
 frameworkVersion: '3'
 
-# useDotenv: true
-
 provider:
   name: aws
   runtime: nodejs18.x
@@ -47,32 +45,32 @@ functions:
         - httpApi:
             path: '/api/putOrder'
             method: POST
-            authorizer: 
-              name: customAuthorizer
+            # authorizer: 
+            #   name: customAuthorizer
     getSingleOrder:
       handler: functions/getSingleOrder/index.handler
       events: 
         - httpApi:
             path: '/api/order/{orderNr}'
             method: GET
-            authorizer: 
-              name: customAuthorizer
+            # authorizer: 
+            #   name: customAuthorizer
     filterOrders:
       handler: functions/filterOrders/index.handler
       events: 
         - httpApi:
             path: '/api/filterOrders/{status}'
             method: GET
-            authorizer: 
-              name: customAuthorizer
+            # authorizer: 
+            #   name: customAuthorizer
     updateOrderStatus:
       handler: functions/updateOrderStatus/index.handler
       events:
         - httpApi: 
             path: "/api/updateOrderStatus"
             method: POST
-            authorizer: 
-              name: customAuthorizer
+            # authorizer: 
+            #   name: customAuthorizer
 
     authorizerFunc:
       handler: functions/authorizer/index.handler

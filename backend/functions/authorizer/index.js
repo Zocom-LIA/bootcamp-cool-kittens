@@ -1,10 +1,9 @@
-// require("dotenv").config();
 import dotenv from "dotenv";
 dotenv.config();
 
 exports.handler = async (event) => {
   console.log(event);
-  //   console.log(process.env.VITE_AUTH_API_KEY);
+  console.log(process.env.AUTH_API_KEY);
   //   //   console.log(import.meta.env.VITE_AUTH_API_KEY);
 
   //   const secretKey = process.env.VITE_AUTH_API_KEY;
