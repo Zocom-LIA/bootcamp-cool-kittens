@@ -11,15 +11,15 @@ type Order = {
 }
 
 type StatusColumnProps = {
-    name: string;
+    status: string;
     orders: Order[];
 }
 
-export const KitchenStatusColumn = ({orders, name}: StatusColumnProps) => {    
+export const KitchenStatusColumn = ({orders, status}: StatusColumnProps) => {    
     return (
-       <section>
+       <section className='column__wrap'>
         <section className='column-title__wrap'>
-            <h2 className='title'>{name}</h2>
+            <h2 className='title'>{status === 'preparing' ? 'Ongoing' : 'Done'}</h2>
             <hr className='straight-line' />
         </section>
             {orders && orders.map((order) => (

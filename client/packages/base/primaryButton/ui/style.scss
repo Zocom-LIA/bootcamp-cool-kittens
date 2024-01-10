@@ -4,25 +4,31 @@
     width: 100%;
     color: $snow;
     @include fontsizeMedium;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     @include center;
     padding: $padding-large 0;
-    margin: $margin 0;
+    // margin: $margin 0;
     border-radius: $radius-tier-2;
 }
 
-.primary__button:disabled {
-    opacity: 55%;
-}
+// .primary__button:disabled {
+//     opacity: 55%;
+// }
 
 .black-bg {
     background-color: $coal;
+    margin: $margin 0;
+}
+
+.black-bg:disabled {
+    opacity: 55%;
 }
 
 .no-bg {
     background-color: none;
     border: 2px solid $snow;
+    margin: $margin 0;
 }
 
 .green-bg {

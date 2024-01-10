@@ -13,7 +13,7 @@
     @include row;
     align-items: center;
     padding: $padding-large 0;
-    padding-bottom: $padding-huge;
+    margin: 0 $margin-sml;
 
     .page-title {
         color: $snow;

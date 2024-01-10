@@ -19,7 +19,7 @@ type OrderItem = {
     price: number;
 }
   
-export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus }: CardProps) => {
+export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice }: CardProps) => {
   
   const { setOrdersByStatus} = useContext(AppContext);
 
@@ -48,17 +48,27 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus }: CardProps
   }
   
   return (
-     <article>
-        <h2>{orderNr}</h2>
+     <article className={`kitchen-order__card ${ orderStatus === "preparing" ? 'red-card' : 'green-card' }`}>
+        <h2 className='order-number'>#{orderNr}</h2>
+        <section className='order-contents__container'>
          {
           orderItems && orderItems.map((item, index) => (
-            <section key={index} className='title'>
-              <h3>{item.title}</h3>
-              <hr className='dotted-line'/>
-              <h3>{item.quantity} st</h3>
-              <h3>{item.price * item.quantity} sek</h3>
+            <section key={index} className='order-item__wrap'>
+              <section className='title-qty__wrap'>
+                <h3 className='item-name'>{item.title}</h3>
+                <hr className='dotted-line'/>
+                <h3>{item.quantity} st</h3>
+              </section>
+              <h3 className='item-total'>{item.price * item.quantity} sek</h3>
             </section>
           ))
+        }
+        </section>
+        <p className='order-total'>{totalPrice} sek</p>
+        { orderStatus === "preparing" ? 
+          <p className='wait-timer'>Väntat i {}</p> 
+          :
+          <p className='wait-timer'>Tillagningstid {}</p>
         }
         <PrimaryButton 
         title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} 
