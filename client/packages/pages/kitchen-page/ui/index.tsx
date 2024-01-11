@@ -1,9 +1,14 @@
 import { useEffect, useContext } from 'react'
 import { AppContext } from '@zocom/app-context'
 import './style.scss'
+import { Order } from '@zocom/types'
 // import { filteredOrderData } from ".."
 import { Header } from '@zocom/page-header'
 import { KitchenStatusColumn } from '@zocom/kitchen-status-column'
+
+type APIResponse = {
+  filteredOrders: Order[]
+}
 
 export const KitchenPage = () => {
   // const {fetchFilteredOrders} = filteredOrderData();
@@ -29,7 +34,7 @@ export const KitchenPage = () => {
             authorization: `${import.meta.env.VITE_AUTH_API_KEY}`,
           },
         })
-        const data = await response.json()
+        const data: APIResponse = await response.json()
         console.log(data)
 
         orderStatus && orderStatus === 'ready'
