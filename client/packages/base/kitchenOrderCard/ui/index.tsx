@@ -1,7 +1,7 @@
 import { PrimaryButton } from '@zocom/primary-button';
 import './style.scss';
-
-import { useContext } from 'react';
+import { differenceInSeconds, format } from 'date-fns';
+import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '@zocom/app-context';
 
 type CardProps = {
@@ -19,15 +19,15 @@ type OrderItem = {
     price: number;
 }
   
-export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice }: CardProps) => {
+export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice, timeStamp }: CardProps) => {
   
   const { setOrdersByStatus} = useContext(AppContext);
+  const [waitingTime, setWaitingTime] = useState<string>("")
 
   const updateOrderStatus = async (orderNr: string) => {
     const BASE_URL = import.meta.env.VITE_API_BASE_URL
     const API_ENDPOINT = `/updateOrderStatus`
-    const API_URL = BASE_URL + API_ENDPOINT 
-    // const API_URL = "https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/updateOrderStatus";
+    const API_URL = BASE_URL + API_ENDPOINT
 
     try {
       const response = await fetch(API_URL, {
@@ -63,6 +63,29 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice 
     }
     
   }
+
+  useEffect(() => {
+    const orderTimestamp = new Date(timeStamp);
+
+    const calculateWaitingTime = (): number => {
+      return differenceInSeconds(new Date(), orderTimestamp);
+    };
+
+    const formatWaitingTime = (waitingTimeInSeconds: number): string => {
+      const formattedTime = format(new Date(waitingTimeInSeconds * 1000), 'mm:ss');
+      return formattedTime;
+    };
+
+    const initialWaitingTimeInSeconds = calculateWaitingTime();
+    setWaitingTime(formatWaitingTime(initialWaitingTimeInSeconds));
+
+    const intervalId = setInterval(() => {
+      const newWaitingTimeInSeconds = calculateWaitingTime();
+      setWaitingTime(formatWaitingTime(newWaitingTimeInSeconds));
+    }, 60000);  
+
+    return () => clearInterval(intervalId);
+  }, [timeStamp, waitingTime]);
   
   return (
      <article className={`kitchen-order__card ${ orderStatus === "preparing" ? 'red-card' : 'green-card' }`}>
@@ -83,7 +106,7 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice 
         </section>
         <p className='order-total'>{totalPrice} sek</p>
         { orderStatus === "preparing" ? 
-          <p className='wait-timer'>Väntat i {}</p> 
+          <p className='wait-timer'>Väntat i {waitingTime}</p> 
           :
           <p className='wait-timer'>Tillagningstid {}</p>
         }
