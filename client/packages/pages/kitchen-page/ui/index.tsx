@@ -55,6 +55,7 @@ export const KitchenPage = () => {
             <KitchenStatusColumn 
             orders={ordersByStatus[orderStatus]}
             status={orderStatus}
+            key={orderStatus}
             />
           ))
         }

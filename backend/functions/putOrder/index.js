@@ -22,6 +22,7 @@ exports.handler = async (event) => {
         orderItems: orderItems,
         orderStatus: orderStatus,
         deliveryTime: calculateDeliveryTime(orderItems),
+        timeCooked: "",
       },
     });
 

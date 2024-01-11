@@ -11,6 +11,7 @@ type CardProps = {
     timeStamp: string;
     deliveryTime: string;
     totalPrice: number;
+    timeCooked: string
 }
 
 type OrderItem = {
@@ -19,10 +20,16 @@ type OrderItem = {
     price: number;
 }
   
-export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice, timeStamp }: CardProps) => {
+export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice, timeStamp, timeCooked }: CardProps) => {
   
   const { setOrdersByStatus} = useContext(AppContext);
   const [waitingTime, setWaitingTime] = useState<string>("")
+
+  const calcTimeCooked = () => {
+    const timeDifference = differenceInSeconds(new Date(), new Date(timeStamp))
+    const timeCooked = format(new Date(timeDifference * 1000), 'mm:ss');
+    return timeCooked
+  }
 
   const updateOrderStatus = async (orderNr: string) => {
     const BASE_URL = import.meta.env.VITE_API_BASE_URL
@@ -39,6 +46,7 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice,
         body: JSON.stringify({
           orderNr: orderNr,
           orderStatus: "ready",
+          timeCooked: calcTimeCooked()
         }),
       });
 
@@ -108,7 +116,7 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice,
         { orderStatus === "preparing" ? 
           <p className='wait-timer'>Väntat i {waitingTime}</p> 
           :
-          <p className='wait-timer'>Tillagningstid {}</p>
+          <p className='wait-timer'>Tillagningstid {timeCooked}</p>
         }
         <PrimaryButton 
         title={orderStatus === "preparing" ? "Redo att serveras" : "Serverad"} 
