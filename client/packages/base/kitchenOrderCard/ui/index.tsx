@@ -69,7 +69,10 @@ export const KitchenOrderCard = ({
         return {
           ...prevOrders,
           preparing: preparingOrders,
-          ready: doneOrders,
+          ready: doneOrders.sort(
+            (a, b) =>
+              new Date(b.timeStamp).valueOf() - new Date(a.timeStamp).valueOf()
+          ),
         }
       })
     } catch (error) {
