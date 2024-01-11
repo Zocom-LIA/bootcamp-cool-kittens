@@ -28,14 +28,6 @@ package:
     - .env.*
 
 functions:
-    getMenu:
-      handler: functions/getMenu/index.handler
-      events:
-        - httpApi:
-            path: '/api/menu'
-            method: GET
-            authorizer: 
-              name: customAuthorizer
     filterByCategory:
       handler: functions/filterByCategory/index.handler
       events:
@@ -68,11 +60,11 @@ functions:
             method: GET
             authorizer: 
               name: customAuthorizer
-    updateOrderStatus:
-      handler: functions/updateOrderStatus/index.handler
+    updateOrder:
+      handler: functions/updateOrder/index.handler
       events:
         - httpApi: 
-            path: "/api/updateOrderStatus"
+            path: "/api/updateOrder"
             method: POST
             authorizer: 
               name: customAuthorizer
