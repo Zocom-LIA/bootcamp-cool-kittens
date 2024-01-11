@@ -1,14 +1,6 @@
 import { KitchenOrderCard } from '@zocom/kitchen-order-card'
+import { Order } from '@zocom/types'
 import './style.scss'
-
-type Order = {
-  orderNr: string
-  orderItems: []
-  orderStatus: string
-  timeStamp: string
-  deliveryTime: string
-  totalPrice: number
-}
 
 type StatusColumnProps = {
   status: string

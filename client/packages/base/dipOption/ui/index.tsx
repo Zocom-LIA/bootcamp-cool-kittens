@@ -1,19 +1,11 @@
 import { useContext } from "react";
 import { motion } from "framer-motion";
 import { AppContext } from "@zocom/app-context";
+import { ItemMenu } from '@zocom/types'
 import './style.scss';
 
-type MenuItem = {
-  id: string, 
-  title: string,
-  desc: string,
-  price: number,
-  category: string
-  ingredients?: [],
-} 
-
 type DipItemProps = {
-  dip: MenuItem
+  dip: ItemMenu
 }
 
 export const DipOption = ({dip}: DipItemProps) => {
@@ -35,14 +27,14 @@ export const DipOption = ({dip}: DipItemProps) => {
     }
   }
 
-    return (
-      <motion.button
-      whileHover={{backgroundColor: "#353131"}}
-      whileTap={{scale: 0.95}}
-      className='dip-option__button'
-      onClick={handleAddToCart}
-      >
-        {dip.title}
-      </motion.button>
-    )
+  return (
+    <motion.button
+    whileHover={{backgroundColor: "#353131"}}
+    whileTap={{scale: 0.95}}
+    className='dip-option__button'
+    onClick={handleAddToCart}
+    >
+      {dip.title}
+    </motion.button>
+  )
 }

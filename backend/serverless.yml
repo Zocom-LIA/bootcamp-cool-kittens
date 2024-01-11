@@ -9,7 +9,7 @@ provider:
   profile: fabiola-aws-dev
   region: eu-north-1
   iam:
-    role: arn:aws:iam::818306886347:role/student-development-role
+    role: ${env:AWS_IAM_ROLE}
   httpApi:
     authorizers:
       customAuthorizer:
@@ -28,14 +28,6 @@ package:
     - .env.*
 
 functions:
-    getMenu:
-      handler: functions/getMenu/index.handler
-      events:
-        - httpApi:
-            path: '/api/menu'
-            method: GET
-            authorizer: 
-              name: customAuthorizer
     filterByCategory:
       handler: functions/filterByCategory/index.handler
       events:
@@ -68,11 +60,11 @@ functions:
             method: GET
             authorizer: 
               name: customAuthorizer
-    updateOrderStatus:
-      handler: functions/updateOrderStatus/index.handler
+    updateOrder:
+      handler: functions/updateOrder/index.handler
       events:
         - httpApi: 
-            path: "/api/updateOrderStatus"
+            path: "/api/updateOrder"
             method: POST
             authorizer: 
               name: customAuthorizer
@@ -85,7 +77,7 @@ resources:
     yygsMenu:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: yygs-menu
+        TableName: ${env:AWS_TABLE_MENU}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -109,7 +101,7 @@ resources:
     yygsOrders:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: yygs-orders
+        TableName: ${env:AWS_TABLE_ORDERS}
         AttributeDefinitions:
           - AttributeName: orderNr
             AttributeType: S

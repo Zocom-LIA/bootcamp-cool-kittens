@@ -1,27 +1,30 @@
 import { PutCommand } from "@aws-sdk/lib-dynamodb";
 import { docClient } from "../../services/client";
 import { sendResponse } from "../../responses/index";
-import { generateOrderNumber } from "./generateOrderNr";
-import { generateTimestamp } from "./generateTimeStamp";
 import { calculateTotalPrice } from "./calculateTotalPrice";
 import { calculateDeliveryTime } from "./calculateDeliveryTime";
+import { nanoid } from "nanoid";
 import { format } from "date-fns";
 
 exports.handler = async (event) => {
   const orderItems = JSON.parse(event.body);
-  const orderNr = generateOrderNumber();
   const orderStatus = event.headers["x-order-status"] || undefined;
+
+  const orderNr = nanoid();
+  const timeStamp = format(new Date(), "yyyy-MM-dd HH:mm:ss");
+  const totalPrice = calculateTotalPrice(orderItems);
+  const deliveryTime = calculateDeliveryTime(orderItems);
 
   try {
     const command = new PutCommand({
       TableName: "yygs-orders",
       Item: {
         orderNr: orderNr,
-        timeStamp: format(new Date(), "yyyy-MM-dd HH:mm:ss"), //Direkt här eller i separat funktion?
-        totalPrice: calculateTotalPrice(orderItems),
+        timeStamp: timeStamp,
+        totalPrice: totalPrice,
         orderItems: orderItems,
         orderStatus: orderStatus,
-        deliveryTime: calculateDeliveryTime(orderItems),
+        deliveryTime: deliveryTime,
         timeCooked: "",
       },
     });

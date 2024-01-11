@@ -27,13 +27,13 @@ exports.handler = async (event) => {
 
     return sendResponse(200, {
       success: true,
-      message: "Order status has been updated",
+      message: "Order has been updated",
       order: updatedOrder,
     });
   } catch (error) {
     return sendResponse(500, {
       success: false,
-      message: "Unable to update order status",
+      message: "Unable to update order",
       error,
     });
   }

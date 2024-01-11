@@ -9,6 +9,7 @@ export const orderData = () => {
         const response = await fetch(API_URL, {
           method: "GET",
           headers: {
+            "Content-Type": "application/json",
             authorization: `${import.meta.env.VITE_AUTH_API_KEY}`
           }
           })

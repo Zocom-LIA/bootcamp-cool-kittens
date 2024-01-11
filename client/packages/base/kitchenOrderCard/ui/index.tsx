@@ -1,8 +1,8 @@
-import { PrimaryButton } from '@zocom/primary-button'
-import './style.scss'
-import { differenceInSeconds, format } from 'date-fns'
 import { useContext, useState, useEffect } from 'react'
 import { AppContext } from '@zocom/app-context'
+import { PrimaryButton } from '@zocom/primary-button'
+import { differenceInSeconds, format } from 'date-fns'
+import './style.scss'
 
 type CardProps = {
   orderNr: string
@@ -37,9 +37,9 @@ export const KitchenOrderCard = ({
     return timeCooked
   }
 
-  const updateOrderStatus = async (orderNr: string) => {
+  const updateOrder = async (orderNr: string) => {
     const BASE_URL = import.meta.env.VITE_API_BASE_URL
-    const API_ENDPOINT = `/updateOrderStatus`
+    const API_ENDPOINT = `/updateOrder`
     const API_URL = BASE_URL + API_ENDPOINT
 
     try {
@@ -133,7 +133,7 @@ export const KitchenOrderCard = ({
         title={orderStatus === 'preparing' ? 'Redo att serveras' : 'Serverad'}
         className={orderStatus === 'preparing' ? 'red-bg' : 'green-bg'}
         disabled={orderStatus === 'ready'}
-        action={() => updateOrderStatus(orderNr)}
+        action={() => updateOrder(orderNr)}
       />
     </article>
   )

@@ -47,9 +47,9 @@ exports.handler = async (event) => {
     return sendResponse(500, {
       success: false,
       message: "Unable to retreive orders by timestamp and status",
-      error: error,
       timestamp: timeStampValue,
       orderstatus: orderStatusValue,
+      error: error,
     });
   }
 };
