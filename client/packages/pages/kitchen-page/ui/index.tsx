@@ -6,59 +6,54 @@ import { Header } from "@zocom/page-header";
 import { KitchenStatusColumn } from "@zocom/kitchen-status-column";
 
 export const KitchenPage = () => {
-
   // const {fetchFilteredOrders} = filteredOrderData();
 
-  const statusList = ["preparing", "ready"]
+  const statusList = ["preparing", "ready"];
 
-  const {ordersByStatus, setOrdersByStatus} = useContext(AppContext);
+  const { ordersByStatus, setOrdersByStatus } = useContext(AppContext);
 
-  
-  useEffect(()=> {
+  useEffect(() => {
     const fetchFilteredOrders = async (orderStatus: string) => {
       const today = new Date();
       const todaysDate = today.toISOString().split("T")[0] + " 00:00:00";
-      
+
       try {
-        const BASE_URL = import.meta.env.VITE_API_BASE_URL
-        const API_ENDPOINT = `/filterOrders/${orderStatus}?timeStamp=${todaysDate}`
-        const API_URL = BASE_URL + API_ENDPOINT
+        const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+        const API_ENDPOINT = `/filterOrders/${orderStatus}?timeStamp=${todaysDate}`;
+        const API_URL = BASE_URL + API_ENDPOINT;
         const response = await fetch(API_URL, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            authorization: `${import.meta.env.VITE_AUTH_API_KEY}`
-          }
-        })
-        const data = await response.json()
+            authorization: `${import.meta.env.VITE_AUTH_API_KEY}`,
+          },
+        });
+        const data = await response.json();
         console.log(data);
-        
+
         setOrdersByStatus((prevOrders) => ({
           ...prevOrders,
-          [orderStatus]: data.filteredOrders
-        }))
-        
+          [orderStatus]: data.filteredOrders,
+        }));
       } catch (error) {
         console.error(error, `Failed to fetch ${orderStatus} orders`);
       }
-    }
-    statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus))
-  }, [])
+    };
+    statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus));
+  }, []);
 
   console.log(ordersByStatus);
 
   return (
     <section className="kitchen-page">
-      <Header/>
+      <Header />
       <main className="kitchen-wrap">
-        {
-          statusList.map((orderStatus) => (
-            <KitchenStatusColumn 
+        {statusList.map((orderStatus) => (
+          <KitchenStatusColumn
             orders={ordersByStatus[orderStatus]}
             status={orderStatus}
-            />
-          ))
-        }
+          />
+        ))}
       </main>
-    </section> 
+    </section>
   );
 };
