@@ -20,8 +20,15 @@ export const KitchenPage = () => {
       const todaysDate = today.toISOString().split("T")[0] + " 00:00:00";
       
       try {
-        const URL = `https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/filterOrders/${orderStatus}?timeStamp=${todaysDate}`;
-        const response = await fetch(URL)
+        const BASE_URL = import.meta.env.VITE_API_BASE_URL
+        const API_ENDPOINT = `/filterOrders/${orderStatus}?timeStamp=${todaysDate}`
+        const API_URL = BASE_URL + API_ENDPOINT
+        const response = await fetch(API_URL, {
+          method: 'GET',
+          headers: {
+            authorization: `${import.meta.env.VITE_AUTH_API_KEY}`
+          }
+        })
         const data = await response.json()
         console.log(data);
         
