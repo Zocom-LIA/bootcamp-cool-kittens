@@ -1,24 +1,22 @@
-import { useEffect, useContext } from "react";
-import { AppContext } from "@zocom/app-context";
-import "./style.scss";
+import { useEffect, useContext } from 'react'
+import { AppContext } from '@zocom/app-context'
+import './style.scss'
 // import { filteredOrderData } from ".."
-import { Header } from "@zocom/page-header";
-import { KitchenStatusColumn } from "@zocom/kitchen-status-column";
+import { Header } from '@zocom/page-header'
+import { KitchenStatusColumn } from '@zocom/kitchen-status-column'
 
 export const KitchenPage = () => {
-
   // const {fetchFilteredOrders} = filteredOrderData();
 
-  const statusList = ["preparing", "ready"]
+  const statusList = ['preparing', 'ready']
 
-  const {ordersByStatus, setOrdersByStatus} = useContext(AppContext);
+  const { ordersByStatus, setOrdersByStatus } = useContext(AppContext)
 
-  
-  useEffect(()=> {
+  useEffect(() => {
     const fetchFilteredOrders = async (orderStatus: string) => {
-      const today = new Date();
-      const todaysDate = today.toISOString().split("T")[0] + " 00:00:00";
-      
+      const today = new Date()
+      const todaysDate = today.toISOString().split('T')[0] + ' 00:00:00'
+
       try {
         const BASE_URL = import.meta.env.VITE_API_BASE_URL
         const API_ENDPOINT = `/filterOrders/${orderStatus}?timeStamp=${todaysDate}`
@@ -27,19 +25,28 @@ export const KitchenPage = () => {
         const response = await fetch(API_URL, {
           method: 'GET',
           headers: {
-            "Content-Type": "application/json",
-            authorization: `${import.meta.env.VITE_AUTH_API_KEY}`
-          }
+            'Content-Type': 'application/json',
+            authorization: `${import.meta.env.VITE_AUTH_API_KEY}`,
+          },
         })
         const data = await response.json()
-        
-        setOrdersByStatus((prevOrders) => ({
-          ...prevOrders,
-          [orderStatus]: data.filteredOrders
-        }))
-        
+        console.log(data)
+
+        orderStatus && orderStatus === 'ready'
+          ? setOrdersByStatus((prevOrders) => ({
+              ...prevOrders,
+              [orderStatus]: data.filteredOrders.sort(
+                (a, b) =>
+                  new Date(b.timeStamp).valueOf() -
+                  new Date(a.timeStamp).valueOf()
+              ),
+            }))
+          : setOrdersByStatus((prevOrders) => ({
+              ...prevOrders,
+              [orderStatus]: data.filteredOrders,
+            }))
       } catch (error) {
-        console.error(error, `Failed to fetch ${orderStatus} orders`);
+        console.error(error, `Failed to fetch ${orderStatus} orders`)
       }
     }
     statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus))
@@ -47,18 +54,16 @@ export const KitchenPage = () => {
 
   return (
     <section className="kitchen-page">
-      <Header/>
+      <Header />
       <main className="kitchen-wrap">
-        {
-          statusList.map((orderStatus) => (
-            <KitchenStatusColumn 
+        {statusList.map((orderStatus) => (
+          <KitchenStatusColumn
             orders={ordersByStatus[orderStatus]}
             status={orderStatus}
             key={orderStatus}
-            />
-          ))
-        }
+          />
+        ))}
       </main>
-    </section> 
-  );
-};
+    </section>
+  )
+}
