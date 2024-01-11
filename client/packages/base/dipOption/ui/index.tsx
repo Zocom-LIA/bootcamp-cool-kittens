@@ -35,14 +35,14 @@ export const DipOption = ({dip}: DipItemProps) => {
     }
   }
 
-    return (
-      <motion.button
-      whileHover={{backgroundColor: "#353131"}}
-      whileTap={{scale: 0.95}}
-      className='dip-option__button'
-      onClick={handleAddToCart}
-      >
-        {dip.title}
-      </motion.button>
-    )
+  return (
+    <motion.button
+    whileHover={{backgroundColor: "#353131"}}
+    whileTap={{scale: 0.95}}
+    className='dip-option__button'
+    onClick={handleAddToCart}
+    >
+      {dip.title}
+    </motion.button>
+  )
 }

@@ -15,7 +15,6 @@ type WontonItemProps = {
   wonton: MenuItem
 }
 
-
 export const MenuItem = ({wonton} : WontonItemProps) => {  
     const {cart, setCart} = useContext(AppContext)
 

@@ -1,8 +1,8 @@
-import { PrimaryButton } from '@zocom/primary-button';
-import './style.scss';
-import { differenceInSeconds, format } from 'date-fns';
 import { useContext, useState, useEffect } from 'react';
 import { AppContext } from '@zocom/app-context';
+import { PrimaryButton } from '@zocom/primary-button';
+import { differenceInSeconds, format } from 'date-fns';
+import './style.scss';
 
 type CardProps = {
     orderNr: string;

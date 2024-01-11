@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import { AppContext } from '@zocom/app-context'
-import {QtyButton} from '@zocom/qty-button'
 import { CartItemProps } from '@zocom/app-context'
+import {QtyButton} from '@zocom/qty-button'
 import './style.scss';
 
 export const CartItem = ({id, title, price, quantity} : CartItemProps) => { 
@@ -9,42 +9,33 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
     const [itemQuantity, setItemQuantity] = useState<number>(quantity)
     const {cart, setCart} = useContext(AppContext)
 
-    const calcTotalPrice = (price: number, quantity: number) => {
-        setTotalPrice(price * quantity)
-    }
-
     useEffect(()=> {
-        calcTotalPrice(price, itemQuantity)
-    }, [itemQuantity])
+        setTotalPrice(price * quantity)
+    }, [itemQuantity, price, quantity])
 
-    const incrementQty = (quantity: number) => {
-        const updatedQuantity = quantity += 1
-        setItemQuantity(updatedQuantity)
-        setCart(
-            cart.map((cartItem) =>
-                cartItem.id === id
-                ? { ...cartItem, quantity: updatedQuantity}
-                : cartItem
-            )
-        );
-    }
-
-    const decrementQty = (quantity: number) => {
-        const updatedQuantity = quantity -= 1
-        
-        if (updatedQuantity === 0) {
-            setCart(cart.filter((cartItem) => cartItem.id !== id))
+    const updateQuantity = (quantity: number, operation: 'increment' | 'decrement') => {
+        let updatedQuantity: number;
+      
+        if (operation === 'increment') {
+          updatedQuantity = quantity + 1;
         } else {
-            setItemQuantity(updatedQuantity)
-            setCart(
-                cart.map((cartItem) =>
-                  cartItem.id === id
-                    ? { ...cartItem, quantity: updatedQuantity}
-                    : cartItem
-                )
-            );
+          updatedQuantity = quantity - 1;
+      
+          if (updatedQuantity === 0) {
+            setCart(cart.filter((cartItem) => cartItem.id !== id));
+            return;
+          }
         }
-    }
+      
+        setItemQuantity(updatedQuantity);
+        setCart(
+          cart.map((cartItem) =>
+            cartItem.id === id
+              ? { ...cartItem, quantity: updatedQuantity }
+              : cartItem
+          )
+        );
+      };
 
     return (
         <article className='cart-item__card'>
@@ -54,9 +45,9 @@ export const CartItem = ({id, title, price, quantity} : CartItemProps) => {
                 <h3>{totalPrice} sek</h3>
             </section>
             <section className='quantity-selection'>
-                <QtyButton title='+' action={() => incrementQty(itemQuantity)}/>
+                <QtyButton title='+' action={() => updateQuantity(itemQuantity, 'increment')} />
                 <span>{itemQuantity} stycken</span>
-                <QtyButton title='-' action={() => decrementQty(itemQuantity)}/>
+                <QtyButton title='-' action={() => updateQuantity(itemQuantity, 'decrement')} />
             </section>
         </article>
     )

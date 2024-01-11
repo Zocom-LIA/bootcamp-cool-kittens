@@ -8,13 +8,14 @@ export type CartItemProps = {
     quantity: number
 }
 
-type Order = {
+export type Order = {
     orderNr: string;
     orderItems: [];
     orderStatus: string;
     timeStamp: string;
     deliveryTime: string;
     totalPrice: number;
+    timeCooked: string;
 }
 
 export type AppContextType = {

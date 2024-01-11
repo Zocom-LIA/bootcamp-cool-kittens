@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '@zocom/app-context'
 import { CartItem } from '@zocom/cart-item'
 import { PrimaryButton } from '@zocom/primary-button'
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from 'framer-motion';
 import { CartIcon } from '../../../core/assets/cartIcon' //could we change the path?
 import { orderData } from '..'
 import './style.scss'
@@ -16,15 +16,16 @@ export const CartModal = () => {
     const { putOrder } = orderData();
     const navigate = useNavigate()
 
-    const calcTotalPrice = () => {
-        let price = 0
-        cart.forEach((cartItem) => {
-            price += cartItem.price * cartItem.quantity
-        })
-        setTotalPrice(price)
-    }
 
     useEffect(() => {
+        const calcTotalPrice = () => {
+            let price = 0
+            cart.forEach((cartItem) => {
+                price += cartItem.price * cartItem.quantity
+            })
+            setTotalPrice(price)
+        }
+
         if (cart) {
             let qty = 0;
     

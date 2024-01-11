@@ -7,6 +7,7 @@ type ReceiptItemProps = {
 };
 
 export const ReceiptItem = ({title, price, quantity}: ReceiptItemProps) => {
+    
     const calculateTotalPrice = () => {
         const totalPrice = price  * quantity
         return totalPrice
