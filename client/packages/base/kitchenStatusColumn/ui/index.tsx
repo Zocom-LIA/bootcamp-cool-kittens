@@ -1,32 +1,31 @@
-import { KitchenOrderCard } from "@zocom/kitchen-order-card";
-import './style.scss';
+import { KitchenOrderCard } from '@zocom/kitchen-order-card'
+import './style.scss'
 
 type Order = {
-    orderNr: string;
-    orderItems: [];
-    orderStatus: string;
-    timeStamp: string;
-    deliveryTime: string;
-    totalPrice: number;
+  orderNr: string
+  orderItems: []
+  orderStatus: string
+  timeStamp: string
+  deliveryTime: string
+  totalPrice: number
 }
 
 type StatusColumnProps = {
-    status: string;
-    orders: Order[];
+  status: string
+  orders: Order[]
 }
 
-export const KitchenStatusColumn = ({orders, status}: StatusColumnProps) => {    
-    return (
-       <section className='column__wrap'>
-        <section className='column-title__wrap'>
-            <h2 className='title'>{status === 'preparing' ? 'Ongoing' : 'Done'}</h2>
-            <hr className='straight-line' />
-        </section>
-            {orders && orders.map((order) => (
-                <KitchenOrderCard 
-                key={order.orderNr} {...order}
-                />
-            ))}
-       </section>
-    )
-  }
+export const KitchenStatusColumn = ({ orders, status }: StatusColumnProps) => {
+  return (
+    <section className="column__wrap">
+      <section className="column-title__wrap">
+        <h2 className="title">{status === 'preparing' ? 'Ongoing' : 'Done'}</h2>
+        <hr className="straight-line" />
+      </section>
+      {orders &&
+        orders.map((order) => (
+          <KitchenOrderCard key={order.orderNr} {...order} />
+        ))}
+    </section>
+  )
+}
