@@ -1,18 +1,10 @@
 import { useContext } from "react";
 import { AppContext } from "@zocom/app-context";
+import { ItemMenu } from '@zocom/types'
 import './style.scss';
 
-type MenuItem = {
-  id: string, 
-  title: string,
-  desc: string,
-  price: number,
-  category: string
-  ingredients?: [],
-} 
-
 type WontonItemProps = {
-  wonton: MenuItem
+  wonton: ItemMenu
 }
 
 export const MenuItem = ({wonton} : WontonItemProps) => {  

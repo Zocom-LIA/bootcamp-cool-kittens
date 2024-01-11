@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
-import { AppContext, CartItemProps, Order } from '@zocom/app-context'
+import { AppContext } from '@zocom/app-context'
+import { CartItemProps, Order } from '@zocom/types'
 
 export const AppProvider = ({children}: any) => {
     const [cart, setCart] = useState<CartItemProps[]>([])

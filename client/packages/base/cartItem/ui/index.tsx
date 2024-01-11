@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react'
 import { AppContext } from '@zocom/app-context'
-import { CartItemProps } from '@zocom/app-context'
+import { CartItemProps } from '@zocom/types'
 import {QtyButton} from '@zocom/qty-button'
 import './style.scss';
 

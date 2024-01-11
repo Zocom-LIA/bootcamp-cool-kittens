@@ -1,4 +1,4 @@
-import { CartItemProps } from '@zocom/app-context'
+import { CartItemProps } from '@zocom/types'
 
 export const orderData = () => {
     return {

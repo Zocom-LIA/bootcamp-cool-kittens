@@ -1,5 +1,5 @@
 import { KitchenOrderCard } from "@zocom/kitchen-order-card";
-import { Order } from '@zocom/app-context'
+import { Order } from '@zocom/types'
 import './style.scss';
 
 type StatusColumnProps = {
