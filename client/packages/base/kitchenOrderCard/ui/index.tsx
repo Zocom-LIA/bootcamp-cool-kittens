@@ -38,17 +38,20 @@ export const KitchenOrderCard = ({ orderNr, orderItems, orderStatus, totalPrice 
         }),
       });
 
-      await response.json();
+      const data =  await response.json();
+      const updatedOrder = data?.order
+      console.log(updatedOrder);
+      
 
       setOrdersByStatus((prevOrders) => {
-        const updatedOrders = prevOrders["preparing"].filter((order) => order.orderNr !== orderNr);
-        const movedOrder = prevOrders["preparing"].find((order) => order.orderNr === orderNr);
+        const preparingOrders = prevOrders["preparing"].filter((order) => order.orderNr !== orderNr)
+        const doneOrders = [...prevOrders["ready"], updatedOrder] 
 
         return {
           ...prevOrders,
-          preparing: updatedOrders,
-          ready: movedOrder ? [...prevOrders["ready"], movedOrder] : prevOrders["ready"],
-        };
+          preparing: preparingOrders,
+          ready: doneOrders
+        }
       });
 
     } catch (error) {
