@@ -1,17 +1,17 @@
-// KitchenPage.scss
+@use '@zocom/styles' as *;
+
 .kitchen-page {
-    padding: 20px;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  background-color: $coal;
+  padding: 0 $padding-large;
 
-    h1 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 10px;
-    }
+  .kitchen-wrap {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-huge;
+  }
 
-    p {
-    color: #666;
-    font-size: 16px;
-    }
-
-    /* Add more styles based on your design requirements */
 }
+  

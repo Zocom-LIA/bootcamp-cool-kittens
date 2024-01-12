@@ -1,7 +1,0 @@
-{
-    "name": "@zocom/cart-modal",
-    "main": "./index.ts",
-    "dependencies": {
-        "@zocom/cart-modal": "*"
-    }
-}

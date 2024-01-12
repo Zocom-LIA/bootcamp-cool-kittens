@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '@zocom/app-context'
 import { CartItem } from '@zocom/cart-item'
 import { PrimaryButton } from '@zocom/primary-button'
-import { motion, AnimatePresence } from "framer-motion";
-import { CartIcon } from '../../../core/assets/cartIcon'
+import { motion, AnimatePresence } from 'framer-motion';
+import { CartIcon } from '../../../core/assets/cartIcon' //could we change the path?
+import { orderData } from '..'
 import './style.scss'
 
 export const CartModal = () => {
@@ -12,70 +13,38 @@ export const CartModal = () => {
     const [cartQty, setCartQty] = useState<number>(0)
     const [totalPrice, setTotalPrice] = useState<number>(0)
     const [cartModalOpen, setCartModalOpen] = useState<boolean>(false);
+    const { putOrder } = orderData();
     const navigate = useNavigate()
 
-    //Close modal when pressing Esc on desktop
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "Escape") {
-            setCartModalOpen(false)
-            }
-        };
 
-        if (cartModalOpen) {
-            window.addEventListener("keydown", handleKeyDown);
+    useEffect(() => {
+        const calcTotalPrice = () => {
+            let price = 0
+            cart.forEach((cartItem) => {
+                price += cartItem.price * cartItem.quantity
+            })
+            setTotalPrice(price)
         }
 
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [cartModalOpen]);
-
-    //Calculate total price for cart items. Updates whenever cart is updated
-    const calcTotalPrice = () => {
-        let price = 0
-        cart.forEach((cartItem) => {
-            price += cartItem.price * cartItem.quantity
-        })
-        setTotalPrice(price)
-    }
-
-    useEffect(()=> {
-        calcTotalPrice()
-    }, [cart])
-
-    // Updates the cart quantity when cart is updated
-    useEffect(() => {
         if (cart) {
-        let qty = 0;
-
-        cart.forEach((item) => {
-            qty += item.quantity;
-        });
-
-        setCartQty(qty);
+            let qty = 0;
+    
+            cart.forEach((item) => {
+                qty += item.quantity;
+            });
+    
+            setCartQty(qty);
+            calcTotalPrice();
         }
     }, [cart]);
-
-    const API_URL = 'https://s1ev3z9454.execute-api.eu-north-1.amazonaws.com/api/putOrder' //samla API i en annan fil och importera.
-
-    const handleSendOrder = async () => { //bryta ut till en data fil
-
-        const headers = {
-            "Content-Type": "application/json",
-            ...(orderStatus && {"X-Order-Status": orderStatus})
-        }
-
-        const response = await fetch(API_URL, 
-            {
-                method: 'POST',
-                body: JSON.stringify(cart),
-                headers: headers 
-            });
-        
-        const data = await response.json()
-        console.log("Data",data.orderNr);
+    
+    const handleSendOrder = async () => {
+        const data = await putOrder(orderStatus, cart)
+        const orderNr = data.orderNr
+        console.log("OrderNr", data.orderNr);
         
         setCart([])
-        navigate(`/order/${data.orderNr}`)
+        navigate(`/order/${orderNr}`)
     }
 
     return (
@@ -90,7 +59,6 @@ export const CartModal = () => {
                     )
                 }
             </div>
-
 
             <AnimatePresence>
                 {cartModalOpen && (
@@ -111,7 +79,7 @@ export const CartModal = () => {
                         cart.length > 0 ? 
                         (<section className='cart-item__container'>
                             {cart.map((cartItem)=> (
-                                <CartItem key={cartItem.id} id={cartItem.id} title={cartItem.title} price={cartItem.price} quantity={cartItem.quantity}/> //Skulle kunna skicka en hel cartItem istället
+                                <CartItem key={cartItem.id} {...cartItem} />
                             ))}
                         </section>)
                         :(<section className='cart-empty__notif'>Your cart is empty</section>)

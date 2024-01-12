@@ -1,0 +1,4 @@
+{
+    "name": "@zocom/receipt-modal",
+    "main": "./index.ts"
+}

@@ -17,6 +17,7 @@
     "serverless-webpack": "^5.13.0"
   },
   "devDependencies": {
+    "serverless-dotenv-plugin": "^6.0.0",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
   }

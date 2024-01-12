@@ -1,52 +1,83 @@
 service: yygs
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: nodejs18.x
   profile: fabiola-aws-dev
   region: eu-north-1
   iam:
-    role: arn:aws:iam::818306886347:role/student-development-role
+    role: ${env:AWS_IAM_ROLE}
+  httpApi:
+    authorizers:
+      customAuthorizer:
+        type: request
+        functionName: authorizerFunc
+        payloadVersion: "2.0"
+        enableSimpleResponses: true
 
 plugins: 
   - serverless-webpack
+  - serverless-dotenv-plugin
 
 package: 
   individually: true
+  exclude:
+    - .env.*
 
 functions:
-    getMenu:
-      handler: functions/getMenu/index.handler
-      events:
-        - httpApi:
-            path: '/api/menu'
-            method: GET
     filterByCategory:
       handler: functions/filterByCategory/index.handler
       events:
         - httpApi:
             path: '/api/menu/{category}'
             method: GET
+            authorizer: 
+              name: customAuthorizer
     putOrder:
       handler: functions/putOrder/index.handler
       events: 
         - httpApi:
             path: '/api/putOrder'
             method: POST
+            authorizer: 
+              name: customAuthorizer
     getSingleOrder:
       handler: functions/getSingleOrder/index.handler
       events: 
         - httpApi:
             path: '/api/order/{orderNr}'
             method: GET
+            authorizer: 
+              name: customAuthorizer
+    filterOrders:
+      handler: functions/filterOrders/index.handler
+      events: 
+        - httpApi:
+            path: '/api/filterOrders/{status}'
+            method: GET
+            authorizer: 
+              name: customAuthorizer
+    updateOrder:
+      handler: functions/updateOrder/index.handler
+      events:
+        - httpApi: 
+            path: "/api/updateOrder"
+            method: POST
+            authorizer: 
+              name: customAuthorizer
+
+    authorizerFunc:
+      handler: functions/authorizer/index.handler
 
 resources:
   Resources:
     yygsMenu:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: yygs-menu
+        TableName: ${env:AWS_TABLE_MENU}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
@@ -70,7 +101,7 @@ resources:
     yygsOrders:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: yygs-orders
+        TableName: ${env:AWS_TABLE_ORDERS}
         AttributeDefinitions:
           - AttributeName: orderNr
             AttributeType: S
@@ -91,98 +122,3 @@ resources:
                 KeyType: RANGE  
             Projection:
               ProjectionType: ALL
-              
-
-#   getMenu:
-#     handler: functions/getMenu/index.handler
-#     events:
-#       - httpApi:
-#           path: "/api/menu"
-#           method: GET
-#   getExtras:
-#     handler: functions/getExtras/index.handler
-#     events:
-#       - httpApi:
-#           path: "/api/extras"
-#           method: GET
-#   getOrders:
-#     handler: functions/getOrders/index.handler
-#     events:
-#       - httpApi:
-#           path: "/api/orders"
-#           method: GET
-#   putOrder:
-#     handler: functions/putOrder/index.handler
-#     events:
-#       - httpApi: 
-#           path: "/api/putOrder"
-#           method: POST
-#   getSingleOrder:
-#     handler: functions/getSingleOrder/index.handler
-#     events:
-#       - httpApi: 
-#           path: "/api/order/{orderNr}"
-#           method: GET
-#   cancelOrder:
-#     handler: functions/cancelOrder/index.handler
-#     events:
-#       - httpApi: 
-#           path: "/api/cancelOrder/{orderNr}"
-#           method: DELETE
-#   filterOrders:
-#     handler: functions/filterOrders/index.handler
-#     events:
-#       - httpApi:
-#           path: "/api/filterOrders/{status}"
-#           method: get
-#   updateOrderStatus:
-#     handler: functions/updateOrderStatus/index.handler
-#     events:
-#       - httpApi: 
-#           path: "/api/updateOrderStatus"
-#           method: POST
-
-
-
-
-          
-
-#     bambooBitesExtras:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: bambooBites-extras
-#         AttributeDefinitions:
-#           - AttributeName: id
-#             AttributeType: S
-#           - AttributeName: item
-#             AttributeType: S
-#         KeySchema:
-#           - AttributeName: id
-#             KeyType: HASH
-#           - AttributeName: item
-#             KeyType: RANGE
-#         BillingMode: PAY_PER_REQUEST
-#     bambooBitesOrders:
-#       Type: AWS::DynamoDB::Table
-#       Properties:
-#         TableName: bamboo-bites-ordersDb
-#         AttributeDefinitions:
-#           - AttributeName: orderNr
-#             AttributeType: N
-#           - AttributeName: status
-#             AttributeType: S
-#           - AttributeName: timeStamp
-#             AttributeType: S           
-#         KeySchema:
-#           - AttributeName: orderNr
-#             KeyType: HASH
-#         BillingMode: PAY_PER_REQUEST
-#         GlobalSecondaryIndexes:
-#           - IndexName: 'filterIndex'
-#             KeySchema:
-#               - AttributeName: status
-#                 KeyType: HASH
-#               - AttributeName: timeStamp
-#                 KeyType: RANGE
-#             Projection: 
-#               ProjectionType: ALL

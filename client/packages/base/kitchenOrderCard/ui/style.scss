@@ -1,0 +1,83 @@
+@use '@zocom/styles' as *;
+
+.kitchen-order__card {
+    @include column;
+    padding: $padding-sml;
+    margin: $margin-huge 0;
+    border-radius: $radius-tier-2;
+
+    .order-number {
+        @include fontsizeMedium;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: $padding-large 0;
+    }
+
+    .order-contents__container {
+        width: 100%;
+        border-bottom: 1px solid $shade24Dark;
+
+        .order-item__wrap {
+            @include fontsizeRegular;
+            font-weight: 700;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: $gap-large;
+
+            .title-qty__wrap {
+                @include grid-row;
+                align-items: center;
+
+                .item-name {
+                    text-transform: uppercase;
+                }
+
+                .dotted-line {
+                    border-top: 2px dotted;
+                }
+            }
+            
+            .item-total {
+                margin: 0 $margin-sml;
+            }
+        }
+    }
+
+    .order-total {
+        width: 100%;
+        @include fontsizePriceTotal;
+        font-weight: 700;
+        text-align: right;
+        margin-bottom: $margin-sml;
+    }
+
+    .wait-timer {
+        width: 100%;
+        background-color: $shade24Dark;
+        @include fontsizeRegular;
+        text-transform: uppercase;
+        text-align: center;
+        padding: $padding-sml;
+        margin: $margin-sml;
+    }
+}
+
+.red-card {
+    background-color: $bacon;
+    color: $coal;
+
+    .dotted-line {
+        background-color: $bacon;
+    }
+
+}
+
+.green-card {
+    background-color: $lightMint;
+    color: $clay;
+
+    .dotted-line {
+        background-color: $lightMint;
+    }
+}

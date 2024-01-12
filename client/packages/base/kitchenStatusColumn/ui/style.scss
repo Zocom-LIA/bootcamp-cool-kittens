@@ -1,0 +1,25 @@
+@use '@zocom/styles' as *;
+
+.column__wrap {
+    padding: $padding-sml;
+
+    .column-title__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $gap;
+        margin-bottom: $margin-large;
+    
+        .title {
+            color: $ash;
+            @include fontsizeMedium;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    
+        .straight-line {
+            background-color: $shade24Light;
+            height: 1px;
+        }
+    }
+}

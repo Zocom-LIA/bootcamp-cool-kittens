@@ -1,0 +1,68 @@
+@use '@zocom/styles' as *;
+
+.receipt__card {
+    height: 500px;
+    @include mobile-width-default;
+    @include column-no-center;
+    background-color: $ash;
+    border-radius: $radius-tier-2;
+
+    .receipt-title__wrap {
+        @include center;
+        padding-top: $padding-huge;
+
+        .receipt-logo {
+            width: 42px;
+            padding-bottom: $padding;
+        }
+
+        .title {
+            color: $coal;
+            @include fontsizeMedium;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .order-id {
+            color: $clay;
+            @include fontsizeSmall;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    }
+
+    .receipt-item__container {
+        height: 100%;
+        padding: 0 $padding;
+        margin: $margin 0;
+        overflow: auto;
+    }
+
+    .price-summary__card {
+        background-color: $shade24Dark;
+        color: $coal;
+        @include row;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding;
+        border-radius: $radius-tier-2;
+        margin-top: auto;
+
+        .title {
+            @include fontsizeRegular;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .tax {
+            @include fontsizeMini;
+            font-weight: 500;
+        }
+
+        .price-total {
+            @include fontsizeMedium;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+    }
+}

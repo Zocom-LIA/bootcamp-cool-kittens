@@ -2,36 +2,25 @@ import { useEffect, useState } from 'react';
 import { Header } from '@zocom/page-header'
 import { MenuItem } from '@zocom/menu-item'
 import { DipOption } from '@zocom/dip-option'
+import { ItemMenu } from '@zocom/types'
 import { menuData } from '..';
 import './style.scss';
 
-type MenuItem = {
-    id: string, 
-    title: string,
-    desc: string,
-    price: number,
-    category: string
-    ingredients?: [],
-} 
-
 export const LandingPage = () => {
     const {fetchMenu} = menuData();
-    const [wontonMenu, setWontonMenu] = useState<MenuItem[]>([])
-    const [dipMenu, setDipMenu]= useState<MenuItem[]>([])
+    const [wontonMenu, setWontonMenu] = useState<ItemMenu[]>([])
+    const [dipMenu, setDipMenu]= useState<ItemMenu[]>([])
 
-    //Fetch and set menu filtered by category on mount
     useEffect(() => {
         async function handleFetchWontonMenu() {
             const data = await fetchMenu("wonton")
             const wontonMenu = data.filteredMenuItems
             setWontonMenu(wontonMenu? wontonMenu: null)
-            console.log("Wonton", wontonMenu)
         }
         async function handleFetchDipMenu() {
             const data = await fetchMenu("dip")
             const dipMenu = data.filteredMenuItems
             setDipMenu(dipMenu? dipMenu: null)
-            console.log("Dip", dipMenu)
         }
         handleFetchWontonMenu();
         handleFetchDipMenu();
