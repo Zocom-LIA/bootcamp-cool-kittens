@@ -23,7 +23,9 @@ export const KitchenPage = () => {
         const data: APIResponse = await fetchFilteredOrders(orderStatus)
         const filteredOrders = data.filteredOrders
 
-        return orderStatus && orderStatus === 'ready'
+        console.log(data.filteredOrders)
+
+        orderStatus && orderStatus === 'ready'
           ? setOrdersByStatus((prevOrders) => ({
               ...prevOrders,
               [orderStatus]: filteredOrders.sort(
@@ -80,6 +82,7 @@ export const KitchenPage = () => {
     //   }
     //   statusList.forEach((orderStatus) => fetchFilteredOrders(orderStatus))
   }, [])
+  console.log(ordersByStatus)
 
   return (
     <section className="kitchen-page">
