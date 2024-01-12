@@ -21,6 +21,7 @@ provider:
 plugins: 
   - serverless-webpack
   - serverless-dotenv-plugin
+  - serverless-plugin-typescript
 
 package: 
   individually: true
@@ -30,6 +31,8 @@ package:
 functions:
     filterByCategory:
       handler: functions/filterByCategory/index.handler
+      package:
+        artifact: .serverless/filterByCategory.zip
       events:
         - httpApi:
             path: '/api/menu/{category}'
